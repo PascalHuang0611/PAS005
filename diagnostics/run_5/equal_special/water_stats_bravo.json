@@ -2,117 +2,96 @@
  {
   "bet": 1,
   "spins": 0,
-  "prefund_mult": 175.26,
+  "prefund_mult": 169.08,
   "contrib_mult": 98000,
-  "paid_mult": 97843,
-  "final_mult": 332.26,
-  "net_retained_mult": 157,
+  "paid_mult": 97971,
+  "final_mult": 198.08,
+  "net_retained_mult": 29,
   "pools": [
    {
     "pool_id": 1,
-    "pool_name": "BIGP(砍1/補4/補失敗25)",
+    "pool_name": "BIGP(砍0/補1/補失敗36)",
     "triggers": 8,
-    "paid_mult": 820,
-    "water_mult": 255.7437
+    "paid_mult": 818,
+    "water_mult": 98.1
    },
    {
     "pool_id": 2,
-    "pool_name": "MIDP(砍70/補342/補失敗0)",
-    "triggers": 1768,
-    "paid_mult": 25196,
-    "water_mult": 22.5262
+    "pool_name": "MIDP(砍88/補196/補失敗0)",
+    "triggers": 1542,
+    "paid_mult": 20892,
+    "water_mult": 92.99
    },
    {
     "pool_id": 3,
-    "pool_name": "SMLP(砍3431/補2131/補失敗0)",
-    "triggers": 42336,
-    "paid_mult": 67104,
-    "water_mult": 3.99
-   },
-   {
-    "pool_id": 20,
-    "pool_name": "RESQ(救援828次/付4723.0倍/失敗6)",
-    "triggers": 828,
-    "paid_mult": 4723,
-    "water_mult": 50.0001
+    "pool_name": "SMLP(砍2037/補5030/補失敗0)",
+    "triggers": 46438,
+    "paid_mult": 76261,
+    "water_mult": 6.99
    }
   ]
  },
  {
   "bet": 5,
   "spins": 0,
-  "prefund_mult": 172.68,
+  "prefund_mult": 141.03,
   "contrib_mult": 97000,
-  "paid_mult": 96962.4,
-  "final_mult": 210.28,
-  "net_retained_mult": 37.599999999999994,
+  "paid_mult": 96749.6,
+  "final_mult": 391.43,
+  "net_retained_mult": 250.4,
   "pools": [
    {
     "pool_id": 1,
-    "pool_name": "BIGP(砍3/補0/補失敗0)",
-    "triggers": 14,
-    "paid_mult": 1499,
-    "water_mult": 151.6146
+    "pool_name": "BIGP",
+    "triggers": 19,
+    "paid_mult": 2093.2,
+    "water_mult": 346.25
    },
    {
     "pool_id": 2,
-    "pool_name": "MIDP(砍413/補163/補失敗0)",
-    "triggers": 2415,
-    "paid_mult": 42022.4,
-    "water_mult": 16.2047
+    "pool_name": "MIDP(砍225/補376/補失敗0)",
+    "triggers": 2813,
+    "paid_mult": 50426.8,
+    "water_mult": 41.39
    },
    {
     "pool_id": 3,
-    "pool_name": "SMLP(砍2294/補2475/補失敗0)",
-    "triggers": 27741,
-    "paid_mult": 39804,
-    "water_mult": 9.39
-   },
-   {
-    "pool_id": 20,
-    "pool_name": "RESQ(救援1790次/付13637.0倍/失敗32)",
-    "triggers": 1790,
-    "paid_mult": 13637,
-    "water_mult": 33.0707
+    "pool_name": "SMLP(砍1813/補4246/補失敗0)",
+    "triggers": 29871,
+    "paid_mult": 44229.6,
+    "water_mult": 3.79
    }
   ]
  },
  {
   "bet": 10,
   "spins": 0,
-  "prefund_mult": 276.38,
+  "prefund_mult": 244.73,
   "contrib_mult": 97000,
-  "paid_mult": 97138,
-  "final_mult": 138.38,
-  "net_retained_mult": -138,
+  "paid_mult": 96473.6,
+  "final_mult": 771.13,
+  "net_retained_mult": 526.4,
   "pools": [
    {
     "pool_id": 1,
-    "pool_name": "BIGP(砍4/補0/補失敗0)",
-    "triggers": 28,
-    "paid_mult": 2963.2,
-    "water_mult": 18.889
+    "pool_name": "BIGP(砍2/補2/補失敗6)",
+    "triggers": 33,
+    "paid_mult": 3517.2,
+    "water_mult": 703.85
    },
    {
     "pool_id": 2,
-    "pool_name": "MIDP(砍400/補176/補失敗0)",
-    "triggers": 2766,
-    "paid_mult": 43961.5,
-    "water_mult": 66.7433
+    "pool_name": "MIDP(砍234/補403/補失敗0)",
+    "triggers": 3105,
+    "paid_mult": 51231.4,
+    "water_mult": 59.09
    },
    {
     "pool_id": 3,
-    "pool_name": "SMLP(砍2013/補3383/補失敗0)",
-    "triggers": 28415,
-    "paid_mult": 37544.5,
-    "water_mult": 8.69
-   },
-   {
-    "pool_id": 20,
-    "pool_name": "RESQ(救援1882次/付12668.8倍/失敗32)",
-    "triggers": 1882,
-    "paid_mult": 12668.8,
-    "water_mult": 44.0577
+    "pool_name": "SMLP(砍1583/補4802/補失敗0)",
+    "triggers": 30189,
+    "paid_mult": 41725,
+    "water_mult": 8.19
    }
   ]
  }
