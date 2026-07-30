@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>閱讀指南 — Simulation Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .guide { max-width: 980px; margin: 0 auto; }
+        .guide h2 { margin: 1.6rem 0 .6rem; font-size: 1.15rem; }
+        .guide h3 { margin: 1.1rem 0 .4rem; font-size: 1rem; color: var(--text-primary); }
+        .guide p, .guide li { line-height: 1.85; color: var(--text-secondary); }
+        .guide li { margin-bottom: .35rem; }
+        .guide table { width: 100%; margin: .6rem 0; }
+        .guide th, .guide td { text-align: left; vertical-align: top; }
+        .guide .note { border-left: 3px solid var(--accent); padding: .5rem .9rem; margin: .8rem 0;
+                       background: rgba(255,255,255,.03); border-radius: 4px; }
+        .guide a.back { display: inline-block; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container guide">
+        <header>
+            <h1>閱讀指南</h1>
+            <p>本頁說明資料怎麼來、每個批次想達成什麼,以及建議的閱讀順序。</p>
+        </header>
+
+        <div class="chart-container">
+            <a class="back" href="index.html">← 回到分析儀表板</a>
+
+            <h2>一、這批資料是什麼</h2>
+            <p>五套候選方案(<strong>ALPHA / BRAVO / DELTA / OSCAR / TANGO</strong>)在<strong>同一份真實遊戲賠率表</strong>下的逐局模擬結果。
+            除了方案本身的差異之外,遊戲內容、賠率、盤面演出完全相同。</p>
+            <ul>
+                <li><strong>注額</strong>:$1 / $5 / $10 三種,各自使用該注額的原始機率表(理論回報率 98% / 97% / 97%)</li>
+                <li><strong>玩家配置</strong>:不均等(100 / 10 / 2 人,模擬真實人流)與均等(各 100 人,樣本量對等)兩種</li>
+                <li><strong>局數</strong>:每位玩家 1000 局;儀表板預設顯示前 200 局,可自行切換視窗長度</li>
+                <li><strong>批次</strong>:每種組合各 6 個獨立批次(Run 1~6),每批次使用不同的隨機起點,可用來觀察波動幅度</li>
+                <li><strong>資料粒度</strong>:每一局都完整記錄(盤面、贏分、累計),點玩家列可查看完整歷程</li>
+            </ul>
+
+            <h2>二、四個參數組的目標</h2>
+            <p>每套方案都提供四組資料。<strong>基1 與 基2 是同一組參數</strong>,差別只在啟動狀態的設定方式;<strong>特1 與 特2 亦然</strong>。</p>
+            <table>
+                <thead><tr><th style="width:70px">參數組</th><th style="width:150px">參數版本</th><th>目標</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>基1</strong></td><td>基準版</td><td rowspan="2">貼近原始機率分布——不做體感取捨,呈現該方案在「不特別調校」時的自然樣貌,作為與現行做法對照的基準線。</td></tr>
+                    <tr><td><strong>基2</strong></td><td>基準版</td></tr>
+                    <tr><td><strong>特1</strong></td><td>特化版</td><td rowspan="2">目標導向調校——在不扭曲獎項自然度的前提下,盡可能靠近下方的共同目標清單。</td></tr>
+                    <tr><td><strong>特2</strong></td><td>特化版</td></tr>
+                </tbody>
+            </table>
+            <p><strong>啟動狀態的兩種設定方式</strong>(基1/特1 用方式一,基2/特2 用方式二):方式一是「已運轉一段時間後的狀態」,方式二是「全新啟動的標準初始狀態」。
+            兩者參數完全相同,差異只會反映在<strong>開局前段的體感</strong>上,長期表現趨於一致。這組對照是為了回答「上線第一天與上線三個月的手感差多少」。</p>
+
+            <h2>三、特化版的共同目標清單</h2>
+            <p class="note">以下每一項,<strong>五套方案在特化版中都做了嘗試</strong>——採用的手段各不相同,達成程度也不同。
+            本頁刻意不說明各方案的做法與成效,<strong>請直接從數據判讀</strong>。</p>
+            <ol>
+                <li><strong>整體回報率錨定</strong>:各注額貼近其理論值(98% / 97% / 97%)</li>
+                <li><strong>命中率貼近原始分布</strong>:$1 約 45%、$5 / $10 約 30%</li>
+                <li><strong>開局體感分層</strong>:$1 對新手友善(開局略寬鬆)、$5 標準、<strong>$10 全程穩定貼近理論值(不在前期給予額外優待)</strong></li>
+                <li><strong>特色玩法的首次出現時機盡量提前</strong>:$1 的第一次 Respin、$5 與 $10 的第一次輪盤,都希望玩家不必等太久;
+                    $10 因採穩定優先,放寬到較後段亦可接受</li>
+                <li><strong>連輸保護</strong>:壓低單一玩家的最長連輸,並避免形成固定節奏</li>
+                <li><strong>單人回報率地板</strong>:減少「整段體驗都極度不順」的玩家比例</li>
+                <li><strong>極端贏收斂</strong>:避免少數玩家拿走過多份額,讓多數人落在中段</li>
+                <li><strong>獎項自然度</strong>:不以扭曲倍率分布或特色觸發頻率為代價換取上述指標</li>
+            </ol>
+            <p>第 3、4 項的注額分層是<strong>刻意的設計取向</strong>:$1 視為入門盤、$5 為標準盤、$10 為大額盤,三者的體感目標本就不同,請分別檢視。</p>
+
+            <h2>四、建議的閱讀順序</h2>
+            <ol>
+                <li><strong>先看整體</strong>:摘要指標(回報率、命中率)確認基本盤是否錨住</li>
+                <li><strong>再看分布</strong>:玩家回報率分布圖——注意左尾(最不順的人有多慘)與右尾(最幸運的人有多誇張),以及中段的集中程度</li>
+                <li><strong>然後看節奏</strong>:連輸/連贏分布與連段統計表,留意是否出現不自然的固定長度</li>
+                <li><strong>特色體驗</strong>:特色統計表的觸發率、平均倍率與<strong>首次出現轉數</strong></li>
+                <li><strong>最後看個案</strong>:點開幾位玩家的完整歷程,實際感受逐局節奏(建議挑分布兩端與中位數各一位)</li>
+                <li><strong>比較維度</strong>:同方案比 基1↔基2(啟動方式)、基↔特(調校成效);跨方案比同一參數組;跨批次(Run 1~6)看穩定度</li>
+            </ol>
+
+            <h2>五、注意事項</h2>
+            <ul>
+                <li>各批次的隨機起點不同,單一批次的極端值可能只是抽樣運氣,<strong>請以多批次的共同傾向為準</strong></li>
+                <li>視窗長度會影響結論:短視窗(前 20~200 局)看開局體感,長視窗(1000 局)看長期收斂,兩者結論不同是正常的</li>
+                <li>不均等配置的 $10 只有 2 位玩家,樣本極小、波動大;要比較 $10 的體質請用均等配置</li>
+                <li>本頁的說明對五套方案一視同仁,<strong>不包含任何可用來辨識方案身分的線索</strong>;若您從說明文字推測出某方案的實作方式,那是巧合而非提示</li>
+            </ul>
+        </div>
+    </div>
+    <script src="version.js"></script>
+</body>
+</html>

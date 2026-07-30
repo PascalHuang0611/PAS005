@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>閱讀指南 — Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .guide { max-width: 1000px; margin: 0 auto; }
+        .guide h2 { margin: 1.6rem 0 .6rem; font-size: 1.15rem; }
+        .guide h3 { margin: 1.2rem 0 .4rem; font-size: 1rem; }
+        .guide p, .guide li { line-height: 1.85; color: var(--text-secondary); }
+        .guide li { margin-bottom: .35rem; }
+        .guide table { width: 100%; margin: .6rem 0; }
+        .guide th, .guide td { text-align: left; vertical-align: top; }
+        .guide .note { border-left: 3px solid var(--accent); padding: .5rem .9rem; margin: .8rem 0;
+                       background: rgba(255,255,255,.03); border-radius: 4px; }
+        .guide .key { color: var(--text-primary); font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container guide">
+        <header>
+            <h1>閱讀指南 — Detail</h1>
+            <p>解盲版:各方案的真實機制、特別條例與落地要求。</p>
+        </header>
+
+        <div class="chart-container">
+            <a href="detail.html">← 回到詳細版儀表板</a>　|　<a href="guide.html">盲測版指南</a>
+
+            <h2>一、代號對照與機制</h2>
+            <table>
+                <thead><tr><th style="width:80px">二階</th><th style="width:50px">一階</th><th>機制</th></tr></thead>
+                <tbody>
+                    <tr><td class="key">ALPHA</td><td>C</td><td>純隨機(對照組)= CashBingo 現行做法,無池、無干預</td></tr>
+                    <tr><td class="key">BRAVO</td><td>E</td><td>IGS 分BET池:RNG 先抽,依水位改判——池付不起則改判 0 分;池水位達範圍上限則強制補獎(重骰機率表至落在該池範圍)</td></tr>
+                    <tr><td class="key">DELTA</td><td>H</td><td>UJ 混合雙池:個人池 82%(每玩家一組)+ 全域分BET池 18%;無 RNG,純水位門檻</td></tr>
+                    <tr><td class="key">OSCAR</td><td>F</td><td>UJ 全域分BET:每注額一組池,全服共灌共領;無 RNG,純水位門檻</td></tr>
+                    <tr><td class="key">TANGO</td><td>G</td><td>IGS 單位計帳:三個注額<strong>共用同一組池</strong>,以「單位」計帳(每注灌 1 單位份額,出獎領 X 單位 × 自己的注額)</td></tr>
+                </tbody>
+            </table>
+
+            <h2>二、四組資料的真實語意</h2>
+            <table>
+                <thead><tr><th style="width:70px">參數組</th><th style="width:130px">參數</th><th>開機方式</th></tr></thead>
+                <tbody>
+                    <tr><td class="key">基1</td><td>基準版</td><td>出廠狀態表(離線暖機 500 萬轉的快照,每 run 一份;DELTA 的個人池另以穩態抽樣開機)</td></tr>
+                    <tr><td class="key">基2</td><td>基準版</td><td>V7.1 預灌(全新開機)</td></tr>
+                    <tr><td class="key">特1</td><td>特化版</td><td>出廠狀態表</td></tr>
+                    <tr><td class="key">特2</td><td>特化版</td><td>V7.1 預灌</td></tr>
+                </tbody>
+            </table>
+            <p>預灌規則(全系統一致):大獎池(出獎上限 ≥100 倍)一律 0.35 防開服瞬爆;其餘末三段 0.8、中段 0.65;
+            <strong>Bet10 走穩態平衡點預灌</strong>(蜜月只留給 Bet1/Bet5)。</p>
+
+            <h2>三、各方案的特別條例(摘要)</h2>
+
+            <h3>OSCAR(F)</h3>
+            <ul>
+                <li><span class="key">出廠狀態表條例</span>:預灌與首個門檻獨立抽樣必然造成「開服瞬爆 → 蓄水低潮」,故改用離線暖機快照;<strong>落地必須建立出廠表產製流程</strong></li>
+                <li>特化 v7 = 基準結構 + HIT 溫和傾斜(自然優先);體感目標(首次特色、連輸、單人地板)<strong>結構性失守</strong> —— 全域池無法個人化,這是 F 架構的能力邊界</li>
+                <li>指紋:<strong>Bet10 單人地板 42%,比純隨機的 49% 更低</strong> —— 全域顆粒讓不幸者更不幸</li>
+            </ul>
+
+            <h3>DELTA(H)</h3>
+            <ul>
+                <li>切點取自原始分布,每類別「≥切點」約 18% 劃給全域;Bet1 主類無乾淨切點 → <span class="key">雙生池補丁</span>(同範圍拆全域/個人兩條)</li>
+                <li><span class="key">個人池穩態抽樣開機</span>:每位玩家建池時獨立暖機 1 萬轉(= 隨機領一份個人出廠狀態);落地需預產個人狀態快照庫,玩家水位入庫接續</li>
+                <li>特化 v9:<span class="key">newcomer_prime</span>(新手特色池預灌,自費制——墊高的水從同組慢池扣回,不加碼 RTP)、<span class="key">拉底不砍頭</span>語意;Bet10 大戶盤不 prime</li>
+                <li>成績:連輸 7/15/14、單人地板 82/70/68 —— <strong>個人池是唯一能同時做到地板與連輸保護的架構</strong></li>
+            </ul>
+
+            <h3>BRAVO(E)</h3>
+            <ul>
+                <li>基準版:13 池(BIG = 倍率 ≥100 跨類別合一池 + 主遊戲各段 + RS/LW);強制補獎硬線 = 該池範圍最大倍率(永不超發)</li>
+                <li>強制補獎用 <span class="key">rejection sampling</span>(重骰機率表至落在該池範圍,上限 1000 次、失敗則冷卻 1000 轉)—— 獎項分布自動等於自然條件分布,盤面全為真抽</li>
+                <li>特化版:大/中/小三池(82%)+ <span class="key">補分池</span>(18%);補分池支付「連輸達門檻」或「滿 30 局後個人 RTP 低於門檻」玩家的強制重骰</li>
+                <li>連輸門檻<strong>每段連輸重骰 ∈ [8,13]</strong>(固定值會形成「第 N 輸必得獎」的可抓規律);<span class="key">溢流閥</span>:補分池超過營運上限則回流中/大池</li>
+                <li><strong>落地要求:需伺服器端追蹤每位玩家的累計 RTP 與連輸狀態</strong>(追蹤窗長、重置策略、跨 session 持久化為落地議題)</li>
+            </ul>
+
+            <h3>TANGO(G)</h3>
+            <ul>
+                <li>= BRAVO 機制 + 單位計帳 + 三 BET 共用池;<strong>Bet1 表無輪盤 → 其 LW 貢獻為 0</strong>,LW 池只由 $5/$10 灌與領</li>
+                <li>出廠表<strong>單一一張</strong>(落地只能讀一張、真實混注比未知);水位被強制線硬夾,混注比變化後自我調節</li>
+                <li>指紋一(基準版):<span class="key">跨注補貼</span> —— 不均等配置下 $10 玩家回報率衝到 100~107%(2 位大戶吃 100 位小戶灌的單位)</li>
+                <li>指紋二(特化版):<span class="key">保底不對稱</span> —— $10 的 50 倍獎要抽 50 單位、共用池常付不起,大戶的大獎最容易被砍,而救援補回率與小戶相同</li>
+            </ul>
+
+            <h2>四、詳細版特有的欄位</h2>
+            <table>
+                <thead><tr><th style="width:80px">欄位</th><th>意義</th></tr></thead>
+                <tbody>
+                    <tr><td class="key">來源</td><td>出獎的水位池 ID;DELTA 附 G(全域)/ P(個人);20 = 補分池(BRAVO/TANGO 特化的救援)</td></tr>
+                    <tr><td class="key">殘值</td><td>該次出獎後,該池剩餘的水位(倍率/單位)</td></tr>
+                    <tr><td class="key">原值</td><td><strong>被改判 0 分的局</strong>,其原始抽中的獎金額(僅 BRAVO/TANGO 會出現)</td></tr>
+                    <tr><td class="key">重試</td><td>強制補獎或救援時,重骰機率表的次數</td></tr>
+                </tbody>
+            </table>
+            <p><span class="key">進階統計</span>區塊:各池的觸發次數、已付總額、剩餘水位,池名後綴為(砍 N / 補 N / 補失敗 N)——
+            砍 = 改判 0 分次數、補 = 強制補獎成功次數、補失敗 = 重骰達 1000 次上限而放棄的次數(該池隨後冷卻 1000 轉;無經濟影響,僅為重試紀錄)。</p>
+            <p><span class="key">額外抽樣彙總</span>:重骰總抽樣數 ÷ 自然轉數 = 落地時的額外 CPU 成本指標。
+            實測 BRAVO/TANGO <strong>基準版約 418%</strong>(重骰量是自然轉的 4 倍多)、特化版 86~121%。這是 RNG 改判架構的隱性成本,選型時應納入考量。</p>
+
+            <h2>五、解盲時的三個核心論點</h2>
+            <ol>
+                <li><strong>個人保底只有個人池做得到</strong>:同一套「自然優先」的調校哲學下,DELTA 全面達標,OSCAR 全面失守,BRAVO/TANGO 靠玩家追蹤救援達成一半(連輸追平、地板只抬到一半)</li>
+                <li><strong>共用池的兩面性</strong>:TANGO 基準版給大戶跨注補貼(107%),特化版追保底時卻讓大戶保護最薄——同一結構的一體兩面</li>
+                <li><strong>預灌能補時間軸,補不了穩態分布</strong>:開局蓄水與首次特色可以用預灌/出廠表解決;命中率、連輸、單人離散只能在「達標強度 vs 自然度」之間取捨</li>
+            </ol>
+        </div>
+    </div>
+    <script src="version.js"></script>
+</body>
+</html>
