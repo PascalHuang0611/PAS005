@@ -29,7 +29,7 @@ window.renderDiag = async function (run, dist, config, system) {
         } catch (e) { }
     }
     const sets = window.diagData[key];
-    if (!sets) { out.innerHTML = '<p style="color:var(--text-secondary)">(此選擇無統計資料;可改用下方手動載入)</p>'; return; }
+    if (!sets) { out.innerHTML = '<p style="color:var(--text-secondary)">(此選擇無統計資料——ALPHA 為對照組、無此類檔案;其餘系統會自動載入,離線時可用下方手動載入)</p>'; return; }
     let html = '';
     sets.forEach(st => {
         html += `<h3 style="margin:10px 0 4px;">$${st.bet}${st.scope ? ' · ' + st.scope : ''}${st.players ? ' · n=' + st.players : ''}</h3>`;

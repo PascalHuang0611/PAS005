@@ -14,20 +14,7 @@
     <div class="container">
         <header>
             <h1>Simulation Analytics — Detail</h1>
-            <div style="max-width:900px;margin:8px auto 0;padding:10px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px;text-align:left;font-size:.9rem;">
-                <strong>二階代號 ↔ 一階系統對照(解盲)</strong>
-                <table style="width:100%;margin-top:6px;">
-                    <thead><tr><th style="text-align:left">二階</th><th style="text-align:left">一階</th><th style="text-align:left">機制</th></tr></thead>
-                    <tbody>
-                        <tr><td>ALPHA</td><td>C</td><td>純隨機(對照組;CashBingo 現行做法)</td></tr>
-                        <tr><td>BRAVO</td><td>E</td><td>IGS 分BET池:RNG 先抽,依水位改判(付不起改 0 / 滿線強制補)</td></tr>
-                        <tr><td>DELTA</td><td>H</td><td>UJ 混合:個人池 82% + 全域分BET池 18%(無 RNG 純門檻)</td></tr>
-                        <tr><td>OSCAR</td><td>F</td><td>UJ 全域分BET:每注額一組池,無 RNG 純門檻</td></tr>
-                        <tr><td>TANGO</td><td>G</td><td>IGS 單位計帳:注額區間共用單位池(Bet1/5/10 同池,跨注補貼)</td></tr>
-                    </tbody>
-                </table>
-                <p style="color:var(--text-secondary);font-size:.8rem;margin:6px 0 0;">歷程表進階欄:來源 = 出獎水位池 ID(G=全域/P=個人;20=補分池)、殘值 = 出獎後池剩餘水位、原值 = 被改判 0 分的原始抽中獎、重試 = 強制補獎/救援的重骰次數。</p>
-            </div>
+            
             <p>請上傳模擬結果的 JSON 檔案，以視覺化 RTP 與各局勝率</p>
             <div class="upload-section" id="upload-section">
                 <label for="file-upload" class="custom-file-upload">
@@ -301,6 +288,25 @@
         <p style="color:var(--text-secondary);font-size:.85rem;">選擇本地的 diagnostics 資料夾;內容僅於本機顯示、不會發布。載入後切換上方任一選項即顯示對應統計。</p>
         <input type="file" id="diag-upload" webkitdirectory directory multiple>
         <div id="diag-out" style="overflow-x:auto;margin-top:8px;"></div>
+    </div>
+    <div class="chart-container" style="margin-top:1rem;">
+        <details>
+            <summary style="cursor:pointer;font-weight:bold;">解盲對照表(點擊展開)</summary>
+            <div style="max-width:900px;margin:8px auto 0;padding:10px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px;text-align:left;font-size:.9rem;">
+                <strong>二階代號 ↔ 一階系統對照(解盲)</strong>
+                <table style="width:100%;margin-top:6px;">
+                    <thead><tr><th style="text-align:left">二階</th><th style="text-align:left">一階</th><th style="text-align:left">機制</th></tr></thead>
+                    <tbody>
+                        <tr><td>ALPHA</td><td>C</td><td>純隨機(對照組;CashBingo 現行做法)</td></tr>
+                        <tr><td>BRAVO</td><td>E</td><td>IGS 分BET池:RNG 先抽,依水位改判(付不起改 0 / 滿線強制補)</td></tr>
+                        <tr><td>DELTA</td><td>H</td><td>UJ 混合:個人池 82% + 全域分BET池 18%(無 RNG 純門檻)</td></tr>
+                        <tr><td>OSCAR</td><td>F</td><td>UJ 全域分BET:每注額一組池,無 RNG 純門檻</td></tr>
+                        <tr><td>TANGO</td><td>G</td><td>IGS 單位計帳:注額區間共用單位池(Bet1/5/10 同池,跨注補貼)</td></tr>
+                    </tbody>
+                </table>
+                <p style="color:var(--text-secondary);font-size:.8rem;margin:6px 0 0;">歷程表進階欄:來源 = 出獎水位池 ID(G=全域/P=個人;20=補分池)、殘值 = 出獎後池剩餘水位、原值 = 被改判 0 分的原始抽中獎、重試 = 強制補獎/救援的重骰次數。</p>
+            </div>
+        </details>
     </div></div>
     <script>window.BLIND_MODE = false; window.DETAIL_MODE = true;</script>
     <script src="version.js"></script>
