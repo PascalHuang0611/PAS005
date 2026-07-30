@@ -1582,6 +1582,18 @@ function showPlayerDetails(playerId) {
     const tbody = document.querySelector("#history-table tbody");
     tbody.innerHTML = '';
 
+    // 詳細版(detail.html):歷程表追加進階欄位(一般版不進此分支)
+    if (window.DETAIL_MODE) {
+        const theadTr = document.querySelector('#history-table thead tr');
+        if (theadTr && !theadTr.dataset.detail) {
+            theadTr.dataset.detail = '1';
+            theadTr.innerHTML += `<th title="來源編號(附註代碼)">來源</th>
+                <th title="來源剩餘值">殘值</th>
+                <th title="原始值(與實際不同時)">原值</th>
+                <th title="重試次數">重試</th>`;
+        }
+    }
+
     player.history.forEach(round => {
         const tr = document.createElement('tr');
         const changeClass = round.change > 0 ? 'positive' : (round.change < 0 ? 'negative' : '');
@@ -1603,6 +1615,13 @@ function showPlayerDetails(playerId) {
             <td>$${round.balanceAfter}</td>
             <td>${specialText}</td>
         `;
+        if (window.DETAIL_MODE) {
+            const poolTxt = round.pool ? `${round.pool}${round.poolType || ''}` : '-';
+            tr.innerHTML += `<td>${poolTxt}</td>
+                <td>${round.pool && round.poolWater !== undefined ? round.poolWater : '-'}</td>
+                <td class="negative">${round.origWin ? '$' + round.origWin : '-'}</td>
+                <td>${round.rerolls || '-'}</td>`;
+        }
         tbody.appendChild(tr);
     });
 
