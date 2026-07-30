@@ -284,12 +284,6 @@
         </div>
     </div>
     <div class="container"><div class="chart-container" style="margin-top:2rem;">
-        <h2 style="margin:0 0 6px;">進階統計(本地資料)</h2>
-        <p style="color:var(--text-secondary);font-size:.85rem;">選擇本地的 diagnostics 資料夾;內容僅於本機顯示、不會發布。載入後切換上方任一選項即顯示對應統計。</p>
-        <input type="file" id="diag-upload" webkitdirectory directory multiple>
-        <div id="diag-out" style="overflow-x:auto;margin-top:8px;"></div>
-    </div>
-    <div class="chart-container" style="margin-top:1rem;">
         <details>
             <summary style="cursor:pointer;font-weight:bold;">解盲對照表(點擊展開)</summary>
             <div style="max-width:900px;margin:8px auto 0;padding:10px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px;text-align:left;font-size:.9rem;">
@@ -306,6 +300,14 @@
                 </table>
                 <p style="color:var(--text-secondary);font-size:.8rem;margin:6px 0 0;">歷程表進階欄:來源 = 出獎水位池 ID(G=全域/P=個人;20=補分池)、殘值 = 出獎後池剩餘水位、原值 = 被改判 0 分的原始抽中獎、重試 = 強制補獎/救援的重骰次數。</p>
             </div>
+        </details>
+    </div>
+    <div class="chart-container" style="margin-top:1rem;">
+        <details id="diag-details">
+            <summary style="cursor:pointer;font-weight:bold;">進階統計(點擊展開)</summary>
+            <p style="color:var(--text-secondary);font-size:.85rem;margin:8px 0 6px;">切換上方任一選項即顯示對應的分項統計;離線或需查看其他批次時,可手動選擇本地資料夾載入。</p>
+            <input type="file" id="diag-upload" webkitdirectory directory multiple>
+            <div id="diag-out" style="overflow-x:auto;margin-top:8px;"></div>
         </details>
     </div></div>
     <script>window.BLIND_MODE = false; window.DETAIL_MODE = true;</script>
