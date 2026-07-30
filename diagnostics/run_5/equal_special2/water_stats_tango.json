@@ -1,0 +1,42 @@
+[
+ {
+  "bet": 5,
+  "scope": "shared",
+  "spins": 0,
+  "prefund_mult": 473.88,
+  "contrib_mult": 292000,
+  "paid_mult": 291878.3,
+  "final_mult": 595.58,
+  "net_retained_mult": 121.70000000000005,
+  "pools": [
+   {
+    "pool_id": 1,
+    "pool_name": "BIGP(砍14/補0/補失敗0)",
+    "triggers": 51,
+    "paid_mult": 5310.9,
+    "water_mult": 456.9092
+   },
+   {
+    "pool_id": 2,
+    "pool_name": "MIDP(砍1076/補432/補失敗0)",
+    "triggers": 6433,
+    "paid_mult": 102418.2,
+    "water_mult": 78.7807
+   },
+   {
+    "pool_id": 3,
+    "pool_name": "SMLP(砍5654/補13298/補失敗0)",
+    "triggers": 105303,
+    "paid_mult": 158728.1,
+    "water_mult": 9.89
+   },
+   {
+    "pool_id": 20,
+    "pool_name": "RESQ(救援3724次/付25421.1單位/失敗102)",
+    "triggers": 3724,
+    "paid_mult": 25421.1,
+    "water_mult": 50.0001
+   }
+  ]
+ }
+]

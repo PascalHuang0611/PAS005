@@ -1,0 +1,112 @@
+[
+ {
+  "bet": 5,
+  "scope": "shared",
+  "spins": 0,
+  "prefund_mult": 873.99,
+  "contrib_mult": 109640,
+  "paid_mult": 109348.5,
+  "final_mult": 1165.49,
+  "net_retained_mult": 291.5,
+  "pools": [
+   {
+    "pool_id": 1,
+    "pool_name": "BIG",
+    "triggers": 8,
+    "paid_mult": 821,
+    "water_mult": 801.4336
+   },
+   {
+    "pool_id": 4,
+    "pool_name": "MG4(砍0/補0/補失敗34)",
+    "triggers": 0,
+    "paid_mult": 0,
+    "water_mult": 122.2559
+   },
+   {
+    "pool_id": 5,
+    "pool_name": "MG5(砍0/補1/補失敗7)",
+    "triggers": 4,
+    "paid_mult": 89.4,
+    "water_mult": 44.1559
+   },
+   {
+    "pool_id": 6,
+    "pool_name": "MG6(砍92/補89/補失敗14)",
+    "triggers": 269,
+    "paid_mult": 2738.1,
+    "water_mult": 16.4025
+   },
+   {
+    "pool_id": 7,
+    "pool_name": "MG7(砍1531/補1596/補失敗0)",
+    "triggers": 4496,
+    "paid_mult": 22542.9,
+    "water_mult": 8.2236
+   },
+   {
+    "pool_id": 8,
+    "pool_name": "MG8(砍3418/補3592/補失敗0)",
+    "triggers": 14622,
+    "paid_mult": 29655.2,
+    "water_mult": 2.9243
+   },
+   {
+    "pool_id": 9,
+    "pool_name": "MG9(砍6693/補6718/補失敗0)",
+    "triggers": 25778,
+    "paid_mult": 25791.3,
+    "water_mult": 0.9322
+   },
+   {
+    "pool_id": 10,
+    "pool_name": "MG10(砍164/補227/補失敗0)",
+    "triggers": 1156,
+    "paid_mult": 326.4,
+    "water_mult": 0.5109
+   },
+   {
+    "pool_id": 11,
+    "pool_name": "RS 3(砍48/補45/補失敗10)",
+    "triggers": 212,
+    "paid_mult": 7651,
+    "water_mult": 38.8697
+   },
+   {
+    "pool_id": 12,
+    "pool_name": "RS 2(砍543/補626/補失敗0)",
+    "triggers": 1174,
+    "paid_mult": 13548.9,
+    "water_mult": 18.8806
+   },
+   {
+    "pool_id": 13,
+    "pool_name": "RS 1(砍165/補310/補失敗0)",
+    "triggers": 1010,
+    "paid_mult": 2943.2,
+    "water_mult": 7.4197
+   },
+   {
+    "pool_id": 14,
+    "pool_name": "LW 3(砍1/補5/補失敗4)",
+    "triggers": 10,
+    "paid_mult": 513.1,
+    "water_mult": 55.5765
+   },
+   {
+    "pool_id": 15,
+    "pool_name": "LW 2(砍23/補23/補失敗1)",
+    "triggers": 63,
+    "paid_mult": 1532.1,
+    "water_mult": 32.178
+   },
+   {
+    "pool_id": 16,
+    "pool_name": "LW 1(砍43/補56/補失敗0)",
+    "triggers": 119,
+    "paid_mult": 1195.9,
+    "water_mult": 15.7266
+   }
+  ]
+ }
+]
