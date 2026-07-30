@@ -2,117 +2,110 @@
  {
   "bet": 1,
   "spins": 0,
-  "prefund_mult": 230.26,
+  "prefund_mult": 190.1,
   "contrib_mult": 98000,
-  "paid_mult": 97880,
-  "final_mult": 350.26,
-  "net_retained_mult": 120,
+  "paid_mult": 97669,
+  "final_mult": 521.1,
+  "net_retained_mult": 331,
   "pools": [
    {
     "pool_id": 1,
-    "pool_name": "BIGP(砍0/補5/補失敗80)",
-    "triggers": 9,
-    "paid_mult": 934,
-    "water_mult": 232.2093
+    "pool_name": "BIGP(砍1/補1/補失敗45)",
+    "triggers": 4,
+    "paid_mult": 404,
+    "water_mult": 451.1
    },
    {
-    "pool_id": 2,
-    "pool_name": "MIDP(砍82/補486/補失敗0)",
-    "triggers": 1866,
-    "paid_mult": 26732,
-    "water_mult": 64.0606
+    "pool_id": 6,
+    "pool_name": "MG-S(砍289/補503/補失敗0)",
+    "triggers": 43398,
+    "paid_mult": 76017,
+    "water_mult": 9
    },
    {
-    "pool_id": 3,
-    "pool_name": "SMLP(砍3421/補2034/補失敗0)",
-    "triggers": 42497,
-    "paid_mult": 67099,
-    "water_mult": 3.99
-   },
-   {
-    "pool_id": 20,
-    "pool_name": "RESQ(救援571次/付3115.0倍/失敗9)",
-    "triggers": 571,
-    "paid_mult": 3115,
-    "water_mult": 50.0001
+    "pool_id": 13,
+    "pool_name": "RS-S(砍130/補446/補失敗0)",
+    "triggers": 2283,
+    "paid_mult": 21248,
+    "water_mult": 61
    }
   ]
  },
  {
   "bet": 5,
   "spins": 0,
-  "prefund_mult": 116.88,
+  "prefund_mult": 801.65,
   "contrib_mult": 97000,
-  "paid_mult": 96749.4,
-  "final_mult": 367.48,
-  "net_retained_mult": 250.60000000000002,
+  "paid_mult": 97284.4,
+  "final_mult": 517.25,
+  "net_retained_mult": -284.4,
   "pools": [
    {
     "pool_id": 1,
-    "pool_name": "BIGP(砍6/補0/補失敗0)",
-    "triggers": 13,
-    "paid_mult": 1324.6,
-    "water_mult": 265.1584
+    "pool_name": "BIGP(砍0/補1/補失敗1)",
+    "triggers": 24,
+    "paid_mult": 2542.8,
+    "water_mult": 427.65
    },
    {
-    "pool_id": 2,
-    "pool_name": "MIDP(砍440/補145/補失敗0)",
-    "triggers": 2423,
-    "paid_mult": 42076.4,
-    "water_mult": 59.2155
+    "pool_id": 6,
+    "pool_name": "MG-S(砍155/補967/補失敗0)",
+    "triggers": 27175,
+    "paid_mult": 43851,
+    "water_mult": 37.4
    },
    {
-    "pool_id": 3,
-    "pool_name": "SMLP(砍2153/補2644/補失敗0)",
-    "triggers": 27691,
-    "paid_mult": 39810.6,
-    "water_mult": 5.99
+    "pool_id": 13,
+    "pool_name": "RS-S(砍213/補416/補失敗0)",
+    "triggers": 2170,
+    "paid_mult": 24124,
+    "water_mult": 44.8
    },
    {
-    "pool_id": 20,
-    "pool_name": "RESQ(救援1881次/付13537.8倍/失敗75)",
-    "triggers": 1881,
-    "paid_mult": 13537.8,
-    "water_mult": 37.1161
+    "pool_id": 16,
+    "pool_name": "LW-S(砍171/補306/補失敗0)",
+    "triggers": 1644,
+    "paid_mult": 26766.6,
+    "water_mult": 7.4
    }
   ]
  },
  {
   "bet": 10,
   "spins": 0,
-  "prefund_mult": 302.88,
+  "prefund_mult": 852.85,
   "contrib_mult": 97000,
-  "paid_mult": 97027,
-  "final_mult": 275.88,
-  "net_retained_mult": -27,
+  "paid_mult": 97648,
+  "final_mult": 204.85,
+  "net_retained_mult": -648,
   "pools": [
    {
     "pool_id": 1,
-    "pool_name": "BIGP(砍6/補0/補失敗0)",
-    "triggers": 27,
-    "paid_mult": 2842.3,
-    "water_mult": 138.7422
+    "pool_name": "BIGP(砍4/補0/補失敗0)",
+    "triggers": 44,
+    "paid_mult": 4706.4,
+    "water_mult": 61.35
    },
    {
-    "pool_id": 2,
-    "pool_name": "MIDP(砍311/補223/補失敗0)",
-    "triggers": 2763,
-    "paid_mult": 43942.9,
-    "water_mult": 82.0477
+    "pool_id": 6,
+    "pool_name": "MG-S(砍162/補859/補失敗0)",
+    "triggers": 27232,
+    "paid_mult": 43610.4,
+    "water_mult": 17.6
    },
    {
-    "pool_id": 3,
-    "pool_name": "SMLP(砍2108/補3272/補失敗0)",
-    "triggers": 28347,
-    "paid_mult": 37554.4,
-    "water_mult": 5.09
+    "pool_id": 13,
+    "pool_name": "RS-S(砍131/補405/補失敗0)",
+    "triggers": 2258,
+    "paid_mult": 22690.9,
+    "water_mult": 57.9
    },
    {
-    "pool_id": 20,
-    "pool_name": "RESQ(救援1999次/付12687.4倍/失敗61)",
-    "triggers": 1999,
-    "paid_mult": 12687.4,
-    "water_mult": 50.0001
+    "pool_id": 16,
+    "pool_name": "LW-S(砍153/補264/補失敗0)",
+    "triggers": 1575,
+    "paid_mult": 26640.3,
+    "water_mult": 68
    }
   ]
  }
