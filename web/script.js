@@ -31,6 +31,30 @@ window.renderDiag = async function (run, dist, config, system) {
     const sets = window.diagData[key];
     if (!sets) { out.innerHTML = '<p style="color:var(--text-secondary)">(此選擇無統計資料——ALPHA 為對照組、無此類檔案;其餘系統會自動載入,離線時可用下方手動載入)</p>'; return; }
     let html = '';
+
+    // 額外抽樣彙總:成功次數自逐局欄位加總,放棄次數自各項最後一個計數(× 上限)推算
+    const RETRY_LIMIT = 1000;
+    let rounds = 0, extra = 0, evs = 0, giveups = 0;
+    (globalData || []).forEach(pl => (pl.history || []).forEach(h => {
+        rounds++;
+        if (h.rerolls) { extra += h.rerolls; evs++; }
+    }));
+    sets.forEach(st => (st.pools || []).forEach(pp => {
+        if (/[（(]/.test(pp.pool_name)) {
+            const nums = pp.pool_name.match(/\d+(?:\.\d+)?/g);
+            if (nums) giveups += Math.round(+nums[nums.length - 1]);
+        }
+    }));
+    if (rounds) {
+        const total = extra + giveups * RETRY_LIMIT;
+        html += `<div style="padding:8px 10px;margin-bottom:10px;border:1px solid rgba(255,255,255,.15);border-radius:6px;">
+            <strong>額外抽樣彙總(本視圖)</strong><br>
+            自然轉數 ${rounds.toLocaleString()} ｜ 成功重試 ${extra.toLocaleString()} 抽(${evs.toLocaleString()} 局觸發)
+            ｜ 放棄 ${giveups} 次 × 上限 ${RETRY_LIMIT} = ${(giveups * RETRY_LIMIT).toLocaleString()} 抽<br>
+            <span style="color:var(--text-secondary)">合計 ${total.toLocaleString()} 抽 = 自然轉數的 <strong>${(total / rounds * 100).toFixed(0)}%</strong>(落地時的額外運算成本指標)<br>
+            註:成功重試依上方局數/BET 篩選連動;放棄次數為整批統計、不隨篩選縮放,故比例在短視圖下會偏高。</span>
+        </div>`;
+    }
     sets.forEach(st => {
         html += `<h3 style="margin:10px 0 4px;">$${st.bet}${st.scope ? ' · ' + st.scope : ''}${st.players ? ' · n=' + st.players : ''}</h3>`;
         html += `<p style="font-size:.85rem;color:var(--text-secondary)">base ${(+st.prefund_mult).toFixed(1)} ｜ in ${(+st.contrib_mult).toFixed(1)} ｜ out ${(+st.paid_mult).toFixed(1)} ｜ end ${(+st.final_mult).toFixed(1)}</p>`;
@@ -261,6 +285,8 @@ document.addEventListener("DOMContentLoaded", () => {
             h.classList.remove('asc', 'desc');
         });
         processData(globalData);
+        // 詳細版:視圖變動(系統/參數/局數/BET 過濾)後刷新進階統計
+        if (window.renderDiag) window.renderDiag(currentRun, currentDist, currentConfig, currentSystem);
     }
 
     // 系統切換器
