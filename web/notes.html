@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>觀察筆記 — Simulation Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .guide { max-width: 1000px; margin: 0 auto; }
+        .guide h2 { margin: 1.8rem 0 .6rem; font-size: 1.15rem; }
+        .guide h3 { margin: 1.3rem 0 .4rem; font-size: 1.02rem; }
+        .guide p, .guide li, .guide td { line-height: 1.85; color: var(--text-secondary); }
+        .guide li { margin-bottom: .4rem; }
+        .guide table { width: 100%; margin: .6rem 0; }
+        .guide th, .guide td { text-align: left; vertical-align: top; }
+        .guide .key { color: var(--text-primary); font-weight: 600; }
+        .guide .note { border-left: 3px solid var(--accent); padding: .5rem .9rem; margin: .8rem 0;
+                       background: rgba(255,255,255,.03); border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container guide">
+        <header>
+            <h1>觀察筆記</h1>
+            <p>撰寫者:負責本次模擬與調校的 AI 助手。</p>
+        </header>
+
+        <div class="chart-container">
+            <a href="detail.html">← 詳細版儀表板</a>　|　<a href="guide-detail.html">解盲版指南(中立事實)</a>
+
+            <p class="note"><strong>這一頁是主觀解讀,不是事實陳述。</strong>
+            機制、參數與實測數據請以<a href="guide-detail.html">解盲版指南</a>和儀表板為準;本頁記錄的是我在實作與調校過程中形成的判斷,
+            包含推論、取捨理由與建議。讀者可以完全不同意。</p>
+
+            <h2>一、調校過程中最重要的三個發現</h2>
+
+            <h3>1. 個人桶是唯一能同時做到「地板」與「連輸保護」的結構</h3>
+            <p>在同一套調校原則(自然優先、不為達標而扭曲獎項分布)下,五個方案追同一份目標,結果分得很開:
+            DELTA 幾乎全部達成;OSCAR 的單人保護項全數失守;BRAVO 與 TANGO 靠「追蹤玩家狀態 + 救濟」達成一半——連輸保護追平,但單人回報率地板只抬到中途。</p>
+            <p>原因在結構,不在調參功力:全服共用的桶只能保證「整體」的分配,無法保證「每個人」的體驗;
+            要讓某位玩家不掉到某條線以下,系統就必須知道這位玩家目前的狀態。DELTA 用個人桶天然知道,BRAVO/TANGO 用外掛的玩家追蹤知道,OSCAR 完全不知道。</p>
+            <p>其中一個反直覺的觀察:OSCAR 在 $10 的最低單人回報率<strong>比純隨機更低</strong>。
+            全服共用桶會把獎集中給「剛好在對的時刻按下按鈕的人」,運氣差的人比純隨機還要差。這不是缺陷,是共用結構的必然。</p>
+
+            <h3>2. 預灌與出廠狀態表補的是「時間軸」,補不了「分布」</h3>
+            <p>開局蓄水期、第一次特色玩法的等待時間——這些都是時間軸上的問題,可以靠起始狀態解決,而且不影響長期回報率。
+            但命中率、連輸長度、玩家之間的回報率離散程度,是穩態分布的性質,起始狀態一稀釋就沒了,只能靠調整桶的結構與頻率,而那必然要在「達標強度」與「自然度」之間取捨。</p>
+            <p>這條界線在整個調校過程中反覆出現。每次我試圖用起始狀態解決分布問題,數據都會在幾十轉後把效果吃掉。</p>
+
+            <h3>3. 「達標」與「不可辨」是同一枚硬幣的兩面</h3>
+            <p>調校中期我做過幾個版本,指標全部漂亮達標,但代價是:某個倍率出現的頻率是自然值的三倍、某個特色的觸發率是自然值的六倍、
+            或是「連輸第 10 轉必定有獎」這種可以被玩家背下來的規律。這些版本後來都被否決,理由是:能被看出來的保護,價值會打折,還可能被利用。</p>
+            <p>最終版本的做法是把每一分體感改善都用自然度預算去支付——保底做在自然存在的小獎桶上、
+            救濟門檻改成區間隨機而非固定值、大獎維持自然稀有度而不是砍掉換頻率。代價是有些目標只能達成八成。我認為這個交換是對的。</p>
+
+            <h2>二、關於選型,我會怎麼看</h2>
+            <p class="note">以下是我的看法,不代表任何人的立場;決策需要考慮的商業與法遵條件,我掌握的資訊並不完整。</p>
+            <ul>
+                <li><strong>如果目標是「玩家體驗的下限保護」</strong>:DELTA 的結構是唯一能直接做到的,代價是每位玩家一組狀態的儲存與讀寫規模,以及個人資料的管理責任。</li>
+                <li><strong>如果目標是「最小改動、最低營運負擔」</strong>:OSCAR 不需要任何玩家資料,是含桶方案中營運最單純的;
+                    但它換不到單人保護,這一點在調校上沒有辦法補救。</li>
+                <li><strong>如果重視「每一局的盤面都是真的抽出來的」</strong>:BRAVO 與 TANGO 保留了完整的抽獎流程,
+                    但它們的重複抽表成本(基準版約自然轉數的四倍)在高併發下是實質負擔,且部分局的結果會與原始抽出的結果不同,稽核上需要交代。</li>
+                <li><strong>TANGO 的跨注額補貼</strong>是設計的必然結果而非瑕疵:不均等人流下 $10 玩家的回報率會明顯高於理論值。
+                    這件事在商業上是好是壞,取決於營運如何看待大額玩家的補貼——這超出我能判斷的範圍。</li>
+            </ul>
+
+            <h2>三、如果還有時間,我會補的事</h2>
+            <ol>
+                <li><strong>把評測視窗拉到 1000 局以上再看一次地板</strong>:個人桶的保護效果是確定性的,視窗越長越明顯;
+                    現在 200 局視窗看到的離散,有相當一部分是抽樣雜訊而非結構差異。</li>
+                <li><strong>把大獎層獨立出去</strong>:如果 Jackpot 之類的稀有大獎另立一層,基礎遊戲就能更放心地壓縮分布,
+                    「夢」與「節奏」可以分開管理,不用在同一組桶裡互相排擠。</li>
+                <li><strong>掃描 82/18 這個分帳比例</strong>:目前的比例是延續一階的設定,並沒有針對真實賠率表重新掃描過;
+                    地板與大獎存在感的平衡點可能不在 82/18。</li>
+                <li><strong>低流量情境的系統性測試</strong>:目前只有「$10 兩人房」這一個觀測點,樣本太小,
+                    共用桶方案在冷門時段的表現值得單獨驗證。</li>
+            </ol>
+
+            <h2>四、給讀數據的人的提醒</h2>
+            <ul>
+                <li>單一批次的極端值多半是運氣,請看六個批次的共同傾向</li>
+                <li>短視窗與長視窗的結論本來就會不同,兩者都是真的,只是回答不同的問題</li>
+                <li>不均等配置的 $10 只有兩位玩家,不要用它來判斷 $10 的體質</li>
+                <li>「達標」不等於「好」:一個把所有指標都做滿的版本,很可能在倍率分布或節奏上留下痕跡,值得順手檢查</li>
+            </ul>
+        </div>
+    </div>
+    <script src="version.js"></script>
+</body>
+</html>
