@@ -128,7 +128,7 @@
                     <tr><td class="key">基1 / 特1</td><td>全域桶需出廠狀態表;個人桶另需<strong>預先產製一批個人起始狀態快照</strong>,新玩家隨機領取一份。</td></tr>
                     <tr><td class="key">基2 / 特2</td><td>個人桶與全域桶皆用預灌,不需任何快照;新玩家前段回報率偏高。</td></tr>
                     <tr><td class="key">特1 / 特2 另加</td><td>新手加水機制:需標記哪些桶適用,並實作兩段邏輯——(1) 只墊高原本低於發獎線的桶;(2) 從同一位玩家水最多的桶扣回等量的水,維持總水量不變。</td></tr>
-                    <tr><td class="key">額外成本</td><td>五個方案中<strong>儲存與讀寫規模最大</strong>(每位玩家一組狀態);玩家個人狀態涉及備份、遷移與稽核。</td></tr>
+                    <tr><td class="key">額外成本</td><td>五個方案中<strong>儲存與讀寫規模最大</strong>(每位玩家一組狀態)。</td></tr>
                 </tbody>
             </table>
 
@@ -136,7 +136,7 @@
             <table>
                 <thead><tr><th style="width:100px">項目</th><th>內容</th></tr></thead>
                 <tbody>
-                    <tr><td class="key">共通</td><td>桶參數(基準版 13 條 / 特化版 4 條);全服共用狀態(同 OSCAR)。<strong>最終結果由伺服器決定</strong>,前端須接受伺服器回傳的盤面,不能自行以機率表演算。</td></tr>
+                    <tr><td class="key">共通</td><td>桶參數(基準版 13 條 / 特化版 4 條);全服共用狀態(同 OSCAR)。</td></tr>
                     <tr><td class="key">基1 / 特1</td><td>需出廠狀態表,且必須以本方案自己的規律暖機產出。</td></tr>
                     <tr><td class="key">基2 / 特2</td><td>用預灌,不需快照。</td></tr>
                     <tr><td class="key">特1 / 特2 另加</td><td><strong>需追蹤每位玩家的累計回報率與連輸次數</strong>(補分池的救濟條件);需定義追蹤視窗長度、重置策略與跨連線持久化方式。</td></tr>
