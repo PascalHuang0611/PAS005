@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button data-windef="winrate" title="WINRATE:單局總贏分 ≥ 注額才算勝">WINRATE</button>
             </div></div>
             <div class="fp-row"><label>局數</label><select id="fp-rounds" class="fp-select">
-                ${[5, 10, 15, 20, 50, 100, 200, 500].map(n => `<option value="${n}">前 ${n} 局</option>`).join('')}
+                ${[5, 10, 15, 20, 50, 100, 200, 500, 1000].map(n => `<option value="${n}">前 ${n} 局</option>`).join('')}
             </select></div>
         `;
         document.body.appendChild(panel);
