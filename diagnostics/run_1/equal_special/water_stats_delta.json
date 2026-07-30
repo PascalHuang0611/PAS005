@@ -3,60 +3,60 @@
   "bet": 1,
   "scope": "global",
   "spins": 0,
-  "prefund_mult": 250.82,
+  "prefund_mult": 424.54,
   "contrib_mult": 16990,
-  "paid_mult": 16863,
-  "final_mult": 377.82,
-  "net_retained_mult": 127,
+  "paid_mult": 17039,
+  "final_mult": 375.54,
+  "net_retained_mult": -49,
   "pools": [
    {
     "pool_id": 2,
     "pool_name": "MG2-G",
-    "triggers": 2264,
-    "paid_mult": 11320,
-    "water_mult": 7.55
+    "triggers": 2265,
+    "paid_mult": 11325,
+    "water_mult": 4.52
    },
    {
     "pool_id": 3,
     "pool_name": "MG3-G",
     "triggers": 0,
     "paid_mult": 0,
-    "water_mult": 104.97
+    "water_mult": 184.72
    },
    {
     "pool_id": 4,
     "pool_name": "MG4-G",
     "triggers": 1,
-    "paid_mult": 55,
-    "water_mult": 51.72
+    "paid_mult": 75,
+    "water_mult": 54.88
    },
    {
     "pool_id": 5,
     "pool_name": "MG5-G",
     "triggers": 2,
     "paid_mult": 60,
-    "water_mult": 18.75
+    "water_mult": 51.37
    },
    {
     "pool_id": 6,
     "pool_name": "MG6-G",
-    "triggers": 166,
-    "paid_mult": 2187,
-    "water_mult": 9.98
+    "triggers": 172,
+    "paid_mult": 2193,
+    "water_mult": 14.07
    },
    {
     "pool_id": 11,
     "pool_name": "RS3-G",
     "triggers": 39,
-    "paid_mult": 2609,
-    "water_mult": 41.2
+    "paid_mult": 2562,
+    "water_mult": 43.72
    },
    {
     "pool_id": 17,
     "pool_name": "RS3b-G",
-    "triggers": 5,
-    "paid_mult": 632,
-    "water_mult": 143.65
+    "triggers": 6,
+    "paid_mult": 824,
+    "water_mult": 22.26
    }
   ]
  },
@@ -65,46 +65,46 @@
   "scope": "personal",
   "players": 100,
   "spins": 0,
-  "prefund_mult": 5721.3,
+  "prefund_mult": 5533.5099999999975,
   "contrib_mult": 81010.00000000003,
-  "paid_mult": 81042,
-  "final_mult": 5689.300000000002,
-  "net_retained_mult": -31.99999999999818,
+  "paid_mult": 80863,
+  "final_mult": 5680.510000000001,
+  "net_retained_mult": 147.00000000000364,
   "pools": [
    {
     "pool_id": 7,
     "pool_name": "MG7-P",
-    "triggers": 1539,
-    "paid_mult": 9207,
-    "water_mult": 892.3500000000001
+    "triggers": 1526,
+    "paid_mult": 9217,
+    "water_mult": 877.1000000000003
    },
    {
     "pool_id": 8,
     "pool_name": "MG8-P",
-    "triggers": 15097,
-    "paid_mult": 32111,
-    "water_mult": 374.5399999999999
+    "triggers": 15005,
+    "paid_mult": 32220,
+    "water_mult": 366.62999999999994
    },
    {
     "pool_id": 9,
     "pool_name": "MG9-P",
-    "triggers": 28884,
-    "paid_mult": 28472,
-    "water_mult": 149.68000000000004
+    "triggers": 28923,
+    "paid_mult": 28414,
+    "water_mult": 139.02999999999994
    },
    {
     "pool_id": 12,
     "pool_name": "RS2-P",
-    "triggers": 118,
-    "paid_mult": 2911,
-    "water_mult": 3561.9000000000005
+    "triggers": 102,
+    "paid_mult": 2630,
+    "water_mult": 3632.370000000003
    },
    {
     "pool_id": 13,
     "pool_name": "RS1-P",
-    "triggers": 2117,
-    "paid_mult": 8341,
-    "water_mult": 710.8299999999999
+    "triggers": 2086,
+    "paid_mult": 8382,
+    "water_mult": 665.3800000000003
    }
   ]
  },
@@ -112,232 +112,232 @@
   "bet": 5,
   "scope": "global",
   "spins": 0,
-  "prefund_mult": 1473.56,
+  "prefund_mult": 2165.51,
   "contrib_mult": 16540,
-  "paid_mult": 16428.4,
-  "final_mult": 1585.16,
-  "net_retained_mult": 111.60000000000014,
+  "paid_mult": 16663.8,
+  "final_mult": 2041.71,
+  "net_retained_mult": -123.80000000000018,
   "pools": [
    {
     "pool_id": 1,
     "pool_name": "MG1-G",
     "triggers": 0,
     "paid_mult": 0,
-    "water_mult": 457.33
+    "water_mult": 767.5
    },
    {
     "pool_id": 2,
     "pool_name": "MG2-G",
     "triggers": 0,
     "paid_mult": 0,
-    "water_mult": 290.14
-   },
-   {
-    "pool_id": 3,
-    "pool_name": "MG3-G",
-    "triggers": 0,
-    "paid_mult": 0,
-    "water_mult": 142.38
-   },
-   {
-    "pool_id": 4,
-    "pool_name": "MG4-G",
-    "triggers": 0,
-    "paid_mult": 0,
-    "water_mult": 45.33
-   },
-   {
-    "pool_id": 5,
-    "pool_name": "MG5-G",
-    "triggers": 2,
-    "paid_mult": 54,
-    "water_mult": 52.2
-   },
-   {
-    "pool_id": 6,
-    "pool_name": "MG6-G",
-    "triggers": 608,
-    "paid_mult": 6601,
-    "water_mult": 9.98
-   },
-   {
-    "pool_id": 11,
-    "pool_name": "RS3-G",
-    "triggers": 68,
-    "paid_mult": 3548.6,
-    "water_mult": 42.17
-   },
-   {
-    "pool_id": 14,
-    "pool_name": "LW3-G",
-    "triggers": 65,
-    "paid_mult": 5147.4,
-    "water_mult": 108.71
-   },
-   {
-    "pool_id": 17,
-    "pool_name": "RS3b-G",
-    "triggers": 3,
-    "paid_mult": 766.4,
-    "water_mult": 314.88
-   },
-   {
-    "pool_id": 18,
-    "pool_name": "LW3b-G",
-    "triggers": 1,
-    "paid_mult": 311,
-    "water_mult": 122.04
-   }
-  ]
- },
- {
-  "bet": 5,
-  "scope": "personal",
-  "players": 100,
-  "spins": 0,
-  "prefund_mult": 8089.1799999999985,
-  "contrib_mult": 80460.00000000003,
-  "paid_mult": 80315.59999999999,
-  "final_mult": 8233.58,
-  "net_retained_mult": 144.40000000000146,
-  "pools": [
-   {
-    "pool_id": 7,
-    "pool_name": "MG7-P",
-    "triggers": 1195,
-    "paid_mult": 6143.799999999998,
-    "water_mult": 458.27999999999986
-   },
-   {
-    "pool_id": 8,
-    "pool_name": "MG8-P",
-    "triggers": 6394,
-    "paid_mult": 21444.000000000015,
-    "water_mult": 306.88999999999993
-   },
-   {
-    "pool_id": 9,
-    "pool_name": "MG9-P",
-    "triggers": 11410,
-    "paid_mult": 11225.2,
-    "water_mult": 119.62000000000003
-   },
-   {
-    "pool_id": 10,
-    "pool_name": "MG10-P",
-    "triggers": 10803,
-    "paid_mult": 3218.1999999999994,
-    "water_mult": 59.93999999999999
-   },
-   {
-    "pool_id": 12,
-    "pool_name": "RS2-P",
-    "triggers": 519,
-    "paid_mult": 9833.6,
-    "water_mult": 2063.2199999999993
-   },
-   {
-    "pool_id": 13,
-    "pool_name": "RS1-P",
-    "triggers": 575,
-    "paid_mult": 2594.6,
-    "water_mult": 871.9899999999999
-   },
-   {
-    "pool_id": 15,
-    "pool_name": "LW2-P",
-    "triggers": 352,
-    "paid_mult": 12198.000000000004,
-    "water_mult": 3029.4200000000005
-   },
-   {
-    "pool_id": 16,
-    "pool_name": "LW1-P",
-    "triggers": 1157,
-    "paid_mult": 13658.2,
-    "water_mult": 1324.22
-   }
-  ]
- },
- {
-  "bet": 10,
-  "scope": "global",
-  "spins": 0,
-  "prefund_mult": 2053.04,
-  "contrib_mult": 16910,
-  "paid_mult": 16616,
-  "final_mult": 2347.04,
-  "net_retained_mult": 294,
-  "pools": [
-   {
-    "pool_id": 1,
-    "pool_name": "MG1-G",
-    "triggers": 0,
-    "paid_mult": 0,
-    "water_mult": 1172.43
-   },
-   {
-    "pool_id": 2,
-    "pool_name": "MG2-G",
-    "triggers": 0,
-    "paid_mult": 0,
-    "water_mult": 389.89
+    "water_mult": 357.69
    },
    {
     "pool_id": 3,
     "pool_name": "MG3-G",
     "triggers": 1,
     "paid_mult": 155,
-    "water_mult": 98.47
+    "water_mult": 84.74
    },
    {
     "pool_id": 4,
     "pool_name": "MG4-G",
-    "triggers": 3,
-    "paid_mult": 192.5,
-    "water_mult": 72.2
+    "triggers": 0,
+    "paid_mult": 0,
+    "water_mult": 57.96
    },
    {
     "pool_id": 5,
     "pool_name": "MG5-G",
-    "triggers": 6,
-    "paid_mult": 171.7,
-    "water_mult": 42.94
+    "triggers": 3,
+    "paid_mult": 74.4,
+    "water_mult": 47.27
    },
    {
     "pool_id": 6,
     "pool_name": "MG6-G",
-    "triggers": 615,
-    "paid_mult": 7599.3,
-    "water_mult": 7.58
+    "triggers": 599,
+    "paid_mult": 6594.2,
+    "water_mult": 21.82
    },
    {
     "pool_id": 11,
     "pool_name": "RS3-G",
-    "triggers": 26,
-    "paid_mult": 1822.3,
-    "water_mult": 80.65
+    "triggers": 66,
+    "paid_mult": 3583.2,
+    "water_mult": 49.67
    },
    {
     "pool_id": 14,
     "pool_name": "LW3-G",
-    "triggers": 55,
-    "paid_mult": 4346.9,
-    "water_mult": 128.51
+    "triggers": 64,
+    "paid_mult": 5203,
+    "water_mult": 127.84
    },
    {
     "pool_id": 17,
     "pool_name": "RS3b-G",
-    "triggers": 17,
-    "paid_mult": 2328.3,
-    "water_mult": 118.67
+    "triggers": 5,
+    "paid_mult": 1054,
+    "water_mult": 277.08
    },
    {
     "pool_id": 18,
     "pool_name": "LW3b-G",
     "triggers": 0,
     "paid_mult": 0,
-    "water_mult": 235.7
+    "water_mult": 250.14
+   }
+  ]
+ },
+ {
+  "bet": 5,
+  "scope": "personal",
+  "players": 100,
+  "spins": 0,
+  "prefund_mult": 8117.339999999998,
+  "contrib_mult": 80460.00000000003,
+  "paid_mult": 80306.59999999998,
+  "final_mult": 8270.740000000002,
+  "net_retained_mult": 153.40000000000327,
+  "pools": [
+   {
+    "pool_id": 7,
+    "pool_name": "MG7-P",
+    "triggers": 1189,
+    "paid_mult": 6095.5999999999985,
+    "water_mult": 484.28
+   },
+   {
+    "pool_id": 8,
+    "pool_name": "MG8-P",
+    "triggers": 6394,
+    "paid_mult": 21448.20000000001,
+    "water_mult": 296.72999999999996
+   },
+   {
+    "pool_id": 9,
+    "pool_name": "MG9-P",
+    "triggers": 11446,
+    "paid_mult": 11239.800000000005,
+    "water_mult": 125.38000000000002
+   },
+   {
+    "pool_id": 10,
+    "pool_name": "MG10-P",
+    "triggers": 10767,
+    "paid_mult": 3222.2,
+    "water_mult": 60.39000000000001
+   },
+   {
+    "pool_id": 12,
+    "pool_name": "RS2-P",
+    "triggers": 519,
+    "paid_mult": 9894.799999999997,
+    "water_mult": 2040.11
+   },
+   {
+    "pool_id": 13,
+    "pool_name": "RS1-P",
+    "triggers": 593,
+    "paid_mult": 2607.1999999999985,
+    "water_mult": 878.84
+   },
+   {
+    "pool_id": 15,
+    "pool_name": "LW2-P",
+    "triggers": 347,
+    "paid_mult": 12127.600000000006,
+    "water_mult": 3050.81
+   },
+   {
+    "pool_id": 16,
+    "pool_name": "LW1-P",
+    "triggers": 1138,
+    "paid_mult": 13671.199999999992,
+    "water_mult": 1334.2
+   }
+  ]
+ },
+ {
+  "bet": 10,
+  "scope": "global",
+  "spins": 0,
+  "prefund_mult": 1840.43,
+  "contrib_mult": 16910,
+  "paid_mult": 17039.3,
+  "final_mult": 1711.13,
+  "net_retained_mult": -129.29999999999995,
+  "pools": [
+   {
+    "pool_id": 1,
+    "pool_name": "MG1-G",
+    "triggers": 0,
+    "paid_mult": 0,
+    "water_mult": 629.33
+   },
+   {
+    "pool_id": 2,
+    "pool_name": "MG2-G",
+    "triggers": 1,
+    "paid_mult": 277.5,
+    "water_mult": 313.82
+   },
+   {
+    "pool_id": 3,
+    "pool_name": "MG3-G",
+    "triggers": 1,
+    "paid_mult": 102,
+    "water_mult": 176.4
+   },
+   {
+    "pool_id": 4,
+    "pool_name": "MG4-G",
+    "triggers": 1,
+    "paid_mult": 75.5,
+    "water_mult": 59.82
+   },
+   {
+    "pool_id": 5,
+    "pool_name": "MG5-G",
+    "triggers": 18,
+    "paid_mult": 510.7,
+    "water_mult": 25.19
+   },
+   {
+    "pool_id": 6,
+    "pool_name": "MG6-G",
+    "triggers": 971,
+    "paid_mult": 11838.9,
+    "water_mult": 9.18
+   },
+   {
+    "pool_id": 11,
+    "pool_name": "RS3-G",
+    "triggers": 13,
+    "paid_mult": 890.8,
+    "water_mult": 90.82
+   },
+   {
+    "pool_id": 14,
+    "pool_name": "LW3-G",
+    "triggers": 26,
+    "paid_mult": 2155.2,
+    "water_mult": 111.1
+   },
+   {
+    "pool_id": 17,
+    "pool_name": "RS3b-G",
+    "triggers": 8,
+    "paid_mult": 1188.7,
+    "water_mult": 106.92
+   },
+   {
+    "pool_id": 18,
+    "pool_name": "LW3b-G",
+    "triggers": 0,
+    "paid_mult": 0,
+    "water_mult": 188.55
    }
   ]
  },
@@ -346,67 +346,67 @@
   "scope": "personal",
   "players": 100,
   "spins": 0,
-  "prefund_mult": 9833.4,
+  "prefund_mult": 9876.65,
   "contrib_mult": 80089.99999999997,
-  "paid_mult": 79902.5,
-  "final_mult": 10020.900000000001,
-  "net_retained_mult": 187.50000000000182,
+  "paid_mult": 80070.1,
+  "final_mult": 9896.550000000003,
+  "net_retained_mult": 19.900000000003274,
   "pools": [
    {
     "pool_id": 7,
     "pool_name": "MG7-P",
-    "triggers": 2822,
-    "paid_mult": 16141.399999999996,
-    "water_mult": 590.8100000000001
+    "triggers": 2805,
+    "paid_mult": 16063.299999999988,
+    "water_mult": 590.89
    },
    {
     "pool_id": 8,
     "pool_name": "MG8-P",
-    "triggers": 3740,
-    "paid_mult": 10737.1,
-    "water_mult": 280.09
+    "triggers": 3722,
+    "paid_mult": 10729.099999999999,
+    "water_mult": 281.48999999999995
    },
    {
     "pool_id": 9,
     "pool_name": "MG9-P",
-    "triggers": 10331,
-    "paid_mult": 13248,
-    "water_mult": 106.65999999999998
+    "triggers": 10330,
+    "paid_mult": 13316.600000000002,
+    "water_mult": 106.50000000000007
    },
    {
     "pool_id": 10,
     "pool_name": "MG10-P",
-    "triggers": 12932,
-    "paid_mult": 3894.4,
-    "water_mult": 60.73000000000001
+    "triggers": 12886,
+    "paid_mult": 3856.5,
+    "water_mult": 58.999999999999986
    },
    {
     "pool_id": 12,
     "pool_name": "RS2-P",
-    "triggers": 310,
-    "paid_mult": 9113.4,
-    "water_mult": 3877.080000000001
+    "triggers": 305,
+    "paid_mult": 9259.000000000005,
+    "water_mult": 3887.27
    },
    {
     "pool_id": 13,
     "pool_name": "RS1-P",
-    "triggers": 666,
-    "paid_mult": 3117.1,
-    "water_mult": 842.0600000000001
+    "triggers": 647,
+    "paid_mult": 3135.9999999999977,
+    "water_mult": 844.2999999999996
    },
    {
     "pool_id": 15,
     "pool_name": "LW2-P",
-    "triggers": 371,
-    "paid_mult": 12225.700000000004,
-    "water_mult": 2920.1499999999996
+    "triggers": 359,
+    "paid_mult": 12191.600000000006,
+    "water_mult": 2828.8700000000003
    },
    {
     "pool_id": 16,
     "pool_name": "LW1-P",
-    "triggers": 993,
-    "paid_mult": 11425.40000000001,
-    "water_mult": 1343.32
+    "triggers": 1030,
+    "paid_mult": 11518.000000000007,
+    "water_mult": 1298.2299999999998
    }
   ]
  }
