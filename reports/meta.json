@@ -2,7 +2,7 @@
  "rounds": 1000,
  "playersPerBet": 100,
  "runs": 6,
- "seed": 1785413964205264200,
+ "seed": 1785426678593537100,
  "systems": [
   "alpha",
   "bravo",
