@@ -1,0 +1,700 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #60a5fa;
+    --primary-color: #6366f1;
+    --success: #10b981;
+    --danger: #ef4444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    background: linear-gradient(135deg, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.summary-cards {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.card {
+    flex: 1;
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card p {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.chart-container {
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.chart-container h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.table-container {
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.table-container h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    max-height: 500px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+th {
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    position: sticky;
+    top: 0;
+    background-color: var(--card-bg);
+    z-index: 10;
+}
+
+td {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+    background-color: rgba(255,255,255,0.02);
+}
+
+.positive {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.negative {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+/* File Upload Styles */
+.upload-section {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid rgba(255,255,255,0.1);
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    background-color: rgba(255,255,255,0.05);
+    color: var(--text-primary);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+#file-name {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.controls-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.system-toggle {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.05);
+    padding: 0.3rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.sys-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.6rem 1.5rem;
+    border-radius: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.sys-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.tabs-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+}
+
+.tabs-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.row-label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+    width: 70px;
+    text-align: right;
+}
+
+.tabs-container {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    flex: 1;
+    padding-bottom: 0.2rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(255,255,255,0.05);
+}
+
+.tabs-container::-webkit-scrollbar {
+    height: 6px;
+}
+.tabs-container::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+}
+.tabs-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.tab-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-secondary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 建議優先檢視的參數標色 (三組同色不分名次):只改既有邊框與文字顏色,不改任何尺寸 */
+.tab-btn.rank-pick:not(.active) {
+    border-color: #fbbf24;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.08);
+}
+
+#rtp-table tbody tr {
+    cursor: pointer;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); 
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto; 
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    width: 92%; 
+    max-width: 1100px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-btn {
+    color: var(--text-secondary);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.modal-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+}
+
+.stat-box {
+    background-color: rgba(255,255,255,0.05);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.stat-box span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.stat-box strong {
+    font-size: 1.8rem;
+}
+
+.history-table-wrapper {
+    max-height: 60vh;
+    overflow-y: auto;
+    overscroll-behavior: contain; /* 滾到底不要帶動背景頁面 */
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 0.5rem;
+}
+
+th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+th.sortable:hover {
+    color: var(--text-primary);
+}
+
+.sort-icon::after {
+    content: '\21D5';
+    font-size: 0.8em;
+    margin-left: 0.3rem;
+    opacity: 0.3;
+}
+
+th.asc .sort-icon::after {
+    content: '\2191';
+    opacity: 1;
+}
+
+th.desc .sort-icon::after {
+    content: '\2193';
+    opacity: 1;
+}
+
+/* 參數比對工具頁 */
+#cmp-table th.cmp-th {
+    white-space: nowrap;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.75rem;
+}
+
+#cmp-table td {
+    white-space: nowrap;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+#cmp-table tbody tr.rec-row {
+    background: rgba(251, 191, 36, 0.07);
+}
+
+#cmp-table tbody tr.rec-row:hover {
+    background: rgba(251, 191, 36, 0.12);
+}
+
+/* 右上角版本號 */
+#app-version {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1200;
+}
+
+/* 右上角推薦標記來源 (版本號下方) */
+#rec-source-badge {
+    position: fixed;
+    top: 32px;
+    right: 16px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1200;
+}
+
+#rec-source-badge.custom {
+    color: #fbbf24;
+    opacity: 1;
+}
+
+/* 懸浮快速切換面板 */
+#fp-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+    z-index: 1100;
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+#fp-fab:hover {
+    background: var(--accent-hover);
+    transform: scale(1.08);
+}
+
+#floating-switcher {
+    position: fixed;
+    right: 24px;
+    bottom: 88px;
+    width: 280px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.55);
+    z-index: 1100;
+    display: none;
+}
+
+#floating-switcher .fp-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+}
+
+#fp-close {
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+#fp-close:hover {
+    color: var(--text-primary);
+}
+
+.fp-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.fp-row label {
+    width: 48px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.fp-select {
+    flex: 1;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.4rem;
+    padding: 0.35rem 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+}
+
+.fp-sys {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.fp-sys button {
+    background: var(--bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-secondary);
+    width: 28px;
+    height: 28px;
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.fp-sys button:hover {
+    border-color: var(--accent-hover);
+    color: var(--text-primary);
+}
+
+.fp-sys button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+/* 懸浮面板:等分按鈕列(批次/配置/系統/勝定義) */
+.fp-btns {
+    display: flex;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.fp-btns button {
+    flex: 1;
+    background: var(--bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-secondary);
+    height: 28px;
+    border-radius: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    padding: 0 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.fp-btns button:hover {
+    border-color: var(--accent-hover);
+    color: var(--text-primary);
+}
+
+.fp-btns button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+/* 玩家歷程:盤面格子(四個位置淺底色,E = 空白格) */
+.board-cells {
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.board-cell {
+    min-width: 24px;
+    height: 22px;
+    line-height: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0 3px;
+}
+
+.board-cell.special {
+    background: rgba(139, 92, 246, 0.22); /* 第四格特殊符號(倍率/RS/LW)微紫 */
+}
+
+.board-sep {
+    color: var(--text-secondary);
+    margin: 0 3px;
+    font-size: 0.75rem;
+}
+
+/* 統計區塊收合(狀態記憶在 localStorage) */
+.sec-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.sec-head:hover .sec-arrow { color: var(--text-primary); }
+
+.sec-arrow {
+    transition: transform 0.15s;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+[data-sec].collapsed .sec-arrow { transform: rotate(-90deg); }
+[data-sec].collapsed .sec-body { display: none; }
+.sec-body { margin-top: 0.8rem; }
+
+/* summary-cards 原本是 flex 容器,包一層 sec-body 後把排版轉移進去 */
+.summary-cards { display: block; }
+.summary-cards .sec-body { display: flex; gap: 2rem; }
+[data-sec].collapsed { padding-bottom: 1rem; }
+
+/* 區塊拖曳排序 */
+.sec-drag {
+    margin-left: auto;
+    cursor: grab;
+    color: var(--text-secondary);
+    padding: 0 8px;
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.sec-drag:hover { color: var(--text-primary); }
+.sec-drag:active { cursor: grabbing; }
+
+[data-sec].dragging {
+    opacity: 0.55;
+    outline: 2px dashed rgba(255, 255, 255, 0.35);
+}

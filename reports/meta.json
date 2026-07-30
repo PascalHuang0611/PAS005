@@ -1,0 +1,48 @@
+{
+ "rounds": 500,
+ "playersPerBet": 100,
+ "runs": 6,
+ "seed": 1785379916710903400,
+ "systems": [
+  "alpha",
+  "bravo",
+  "delta",
+  "oscar",
+  "tango"
+ ],
+ "theoretical": {
+  "1": {
+   "bet": 1,
+   "rtp": 98,
+   "hitPct": 45,
+   "rsPct": 2,
+   "lwPct": 0,
+   "expFirstWin": 2.22,
+   "firstWinTol": 2.44,
+   "eqRarityL8": 10,
+   "eqRarityL10": 12
+  },
+  "10": {
+   "bet": 10,
+   "rtp": 97,
+   "hitPct": 30,
+   "rsPct": 2,
+   "lwPct": 1.5,
+   "expFirstWin": 3.33,
+   "firstWinTol": 3.67,
+   "eqRarityL8": 16,
+   "eqRarityL10": 20
+  },
+  "5": {
+   "bet": 5,
+   "rtp": 97,
+   "hitPct": 30,
+   "rsPct": 2,
+   "lwPct": 1.5,
+   "expFirstWin": 3.33,
+   "firstWinTol": 3.67,
+   "eqRarityL8": 16,
+   "eqRarityL10": 20
+  }
+ }
+}

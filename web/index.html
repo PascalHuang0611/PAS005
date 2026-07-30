@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模擬器分析儀表板 (Simulator Analytics)</title>
+    <!-- 引入 Google Fonts 提升質感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- 引入 Chart.js 用於繪製折線圖 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simulation Analytics</h1>
+            <p>請上傳模擬結果的 JSON 檔案，以視覺化 RTP 與各局勝率</p>
+            <div class="upload-section" id="upload-section">
+                <label for="file-upload" class="custom-file-upload">
+                    <i class="fas fa-folder-open"></i> 手動選擇 Reports 資料夾
+                </label>
+                <input type="file" id="file-upload" webkitdirectory directory multiple>
+                <span id="file-name">或等待系統自動讀取...</span>
+            </div>
+
+            <div class="controls-section" id="controls-section" style="display: none;">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; width: 100%;">
+                    <!-- 模擬批次切換 -->
+                    <div class="system-toggle" style="margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--text-secondary); line-height: 2.2;">模擬批次:</span>
+                        <button class="sys-btn run-btn active" data-run="run_1">🎲 Run 1</button>
+                        <button class="sys-btn run-btn" data-run="run_2">🎲 Run 2</button>
+                        <button class="sys-btn run-btn" data-run="run_3">🎲 Run 3</button>
+                        <button class="sys-btn run-btn" data-run="run_4">🎲 Run 4</button>
+                        <button class="sys-btn run-btn" data-run="run_5">🎲 Run 5</button>
+                        <button class="sys-btn run-btn" data-run="run_6">🎲 Run 6</button>
+                    </div>
+                    <!-- 玩家人數配置 -->
+                    <div class="system-toggle" style="margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--text-secondary); line-height: 2.2;">玩家配置:</span>
+                        <button class="sys-btn dist-btn active" data-dist="unequal">👥 不均等配置 (100/10/2)</button>
+                        <button class="sys-btn dist-btn" data-dist="equal">👥 均等配置 (每BET 100人)</button>
+                    </div>
+                </div>
+                <div class="system-toggle">
+                    <button class="sys-btn active" data-system="ALPHA">系統 ALPHA</button>
+                    <button class="sys-btn" data-system="BRAVO">系統 BRAVO</button>
+                    <button class="sys-btn" data-system="DELTA">系統 DELTA</button>
+                    <button class="sys-btn" data-system="OSCAR">系統 OSCAR</button>
+                    <button class="sys-btn" data-system="TANGO">系統 TANGO</button>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; width: 100%;">
+                    <div class="system-toggle">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--text-secondary); line-height: 2.2;">勝的定義:</span>
+                        <button class="sys-btn windef-btn active" data-windef="hit">HIT (有中獎)</button>
+                        <button class="sys-btn windef-btn" data-windef="winrate">WINRATE (回收 ≥ 注額)</button>
+                    </div>
+                    <div class="system-toggle">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--text-secondary); line-height: 2.2;">顯示局數:</span>
+                        <button class="sys-btn rounds-btn" data-rounds="5">前 5 局</button>
+                        <button class="sys-btn rounds-btn" data-rounds="10">前 10 局</button>
+                        <button class="sys-btn rounds-btn" data-rounds="15">前 15 局</button>
+                        <button class="sys-btn rounds-btn" data-rounds="20">前 20 局</button>
+                        <button class="sys-btn rounds-btn" data-rounds="50">前 50 局</button>
+                        <button class="sys-btn rounds-btn" data-rounds="100">前 100 局</button>
+                        <button class="sys-btn rounds-btn active" data-rounds="200">前 200 局</button>
+                        <button class="sys-btn rounds-btn" data-rounds="500">全部 500 局</button>
+                    </div>
+                </div>
+                <div class="tabs-wrapper">
+                    <div class="tabs-row">
+                        <span class="row-label">參數</span>
+                        <div class="tabs-container" id="tabs-container-main"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="summary-cards" data-sec="cards" data-title="摘要指標">
+            <div class="card">
+                <h3>Total Players (總玩家數)</h3>
+                <p id="total-players">--</p>
+            </div>
+            <div class="card">
+                <h3>Overall RTP (整體玩家回報率)</h3>
+                <p id="overall-rtp">--</p>
+            </div>
+            <div class="card">
+                <h3>HITRATE (有中獎率)</h3>
+                <p id="overall-hitrate">--</p>
+            </div>
+            <div class="card">
+                <h3>WINRATE (回收 ≥ 注額率)</h3>
+                <p id="overall-winrate">--</p>
+            </div>
+        </div>
+
+        <div class="chart-container" data-sec="rtpdist" data-title="最終玩家 RTP 分布圖">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h2 style="margin: 0;">最終玩家 RTP 分布圖</h2>
+                <div>
+                    <label for="rtp-bin-size" style="font-weight: bold; margin-right: 5px;">顆粒度 (Bin Size): </label>
+                    <select id="rtp-bin-size" class="system-select" style="min-width: 120px;">
+                        <option value="0.5">0.5%</option>
+                        <option value="1" selected>1%</option>
+                        <option value="2">2%</option>
+                        <option value="5">5%</option>
+                        <option value="10">10%</option>
+                    </select>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; width: 100%;">
+                <canvas id="rtpDistributionChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 2rem;" data-sec="multdist" data-title="單局倍率分布">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">
+                    每一局的總贏分倍率(贏分 ÷ 注額)落在各區間的占比；分母 = 全體玩家總局數。區間為「≥下限、＜上限」。
+                </p>
+                <div style="flex-shrink: 0; margin-left: 16px;">
+                    <label for="mult-bin-size" style="font-weight: bold; margin-right: 5px;">顆粒度: </label>
+                    <select id="mult-bin-size" class="system-select" style="min-width: 100px;">
+                        <option value="0.5">0.5 倍</option>
+                        <option value="1" selected>1 倍</option>
+                        <option value="2">2 倍</option>
+                        <option value="5">5 倍</option>
+                        <option value="10">10 倍</option>
+                    </select>
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <div id="multDistInner" style="position: relative; height: 350px; min-width: 100%;">
+                    <canvas id="multDistChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 2rem;" data-sec="maxstreak" data-title="最大連贏 / 連輸分布">
+            <div style="display: flex; justify-content: space-between; gap: 20px;">
+                <div style="flex: 1;">
+                    <h2 style="margin: 0 0 10px 0;">最終最大連贏分布圖</h2>
+                    <div style="position: relative; height: 350px; width: 100%;">
+                        <canvas id="maxWinDistributionChart"></canvas>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <h2 style="margin: 0 0 10px 0;">最終最大連輸分布圖</h2>
+                    <div style="position: relative; height: 350px; width: 100%;">
+                        <canvas id="maxLossDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 2rem;" data-sec="streakruns" data-title="連贏 / 連輸次數分布">
+            <div style="display: flex; justify-content: space-between; gap: 20px;">
+                <div style="flex: 1;">
+                    <h2 style="margin: 0 0 4px 0;">連贏次數分布</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0 0 10px;">每一段連續贏的長度出現次數 ÷ 全體玩家總局數；鼠標懸停看分子/分母。</p>
+                    <div style="position: relative; height: 350px; width: 100%;">
+                        <canvas id="winRunChart"></canvas>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <h2 style="margin: 0 0 4px 0;">連輸次數分布</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin: 0 0 10px;">每一段連續輸的長度出現次數 ÷ 全體玩家總局數；鼠標懸停看分子/分母。</p>
+                    <div style="position: relative; height: 350px; width: 100%;">
+                        <canvas id="lossRunChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container" style="margin-top: 2rem;" data-sec="streakstats">
+            <h2>連段統計 (每位玩家最大連段，5 / 10 / 15 / 20 固定格 + 罕見門檻)</h2>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 4px 0 10px;">
+                罕見門檻：依各 BET 的勝率換算，單次發生機率低於 0.4%（約千分之 4）與 0.1%（約千分之 1）的最短連輸長度。勝率越低，達到同樣機率的連輸越長，因此各 BET 的門檻不同；欄位內顯示「門檻長度：實際發生的玩家佔比」。
+            </p>
+            <div class="table-wrapper">
+                <table id="streak-stats-table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="table-container" style="margin-top: 2rem;" data-sec="featurestats">
+            <h2>特色統計 (Respin / 輪盤)</h2>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 4px 0 10px;">
+                觸發率 = 該 BET 群組觸發次數 ÷ 群組總局數；平均倍率 = 該特色局總贏分 ÷ 注額的平均。
+            </p>
+            <div class="table-wrapper">
+                <table id="feature-stats-table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 2rem;" data-sec="winrate" data-title="各 BET 群組：每局平均勝率變化">
+            <h2>各 BET 群組：每局平均勝率變化</h2>
+            <div style="position: relative; height: 400px; width: 100%;">
+                <canvas id="winRateChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 2rem;" data-sec="rtpround" data-title="各 BET 群組：每局平均 RTP 變化">
+            <h2>各 BET 群組：每局平均 RTP 變化</h2>
+            <div style="position: relative; height: 400px; width: 100%;">
+                <canvas id="rtpRoundChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container" style="margin-top: 2rem;" data-sec="summarybar" data-title="各 BET 群組：總體平均勝率 與 平均 RTP">
+            <h2>各 BET 群組：總體平均勝率 與 平均 RTP</h2>
+            <div style="position: relative; height: 350px; width: 100%;">
+                <canvas id="summaryBarChart"></canvas>
+            </div>
+        </div>
+
+        <div class="table-container" data-sec="players" data-title="各玩家 RTP 詳細資料">
+            <h2>各玩家 RTP 詳細資料</h2>
+            <div class="table-wrapper">
+                <table id="rtp-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="playerId" class="sortable">Player ID <span class="sort-icon"></span></th>
+                            <th data-sort="betAmount" class="sortable">Bet Amount <span class="sort-icon"></span></th>
+                            <th data-sort="totalPlays" class="sortable">Total Plays <span class="sort-icon"></span></th>
+                            <th data-sort="finalBalance" class="sortable">Final Balance (Net) <span class="sort-icon"></span></th>
+                            <th data-sort="rtp" class="sortable">RTP (%) <span class="sort-icon"></span></th>
+                            <th data-sort="maxWinMult" class="sortable">最大單局倍率 <span class="sort-icon"></span></th>
+                            <th data-sort="maxWin" class="sortable">最大連贏 <span class="sort-icon"></span></th>
+                            <th data-sort="maxLoss" class="sortable">最大連輸 <span class="sort-icon"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 資料將由 JS 動態生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <!-- 玩家詳細歷程 Modal -->
+    <div id="player-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-player-name">Player ID</h2>
+            <div class="modal-stats">
+                <div class="stat-box">
+                    <span>最大連贏</span>
+                    <strong id="modal-max-win" class="positive">0</strong>
+                </div>
+                <div class="stat-box">
+                    <span>最大連輸</span>
+                    <strong id="modal-max-loss" class="negative">0</strong>
+                </div>
+                <div class="stat-box">
+                    <span>最大單局倍率</span>
+                    <strong id="modal-max-mult">0</strong>
+                </div>
+            </div>
+            <div class="history-table-wrapper">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th title="全域局數(全服抽獎順序)">全局</th>
+                            <th title="個人局數">局數</th>
+                            <th title="盤面(E 為空格)">盤面</th>
+                            <th title="本局總贏分">贏分</th>
+                            <th title="本局淨變動(贏分 − 注額)">變動</th>
+                            <th title="累計利潤">累計</th>
+                            <th title="特色(Respin / 輪盤)">特色</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 資料將由 JS 動態生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>window.BLIND_MODE = true;</script>
+    <script src="version.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
