@@ -15,6 +15,46 @@ let allReports = {};
 let currentSortCol = null;
 let currentSortAsc = false; // 預設降冪排序
 let currentSystem = 'ALPHA';
+// 詳細版:本地進階統計(detail.html 專用;內容僅本機顯示,不隨站台發布)
+window.diagData = {};
+window.renderDiag = async function (run, dist, config, system) {
+    const out = document.getElementById('diag-out');
+    if (!out) return;
+    const key = `${run}/${dist}_${config}/${(system || '').toLowerCase()}`;
+    if (!window.diagData[key]) {
+        // 自動抓取(與報表同伺服器的 diagnostics/;無檔或本地未起服則靠手動載入)
+        try {
+            const res = await fetch(`../diagnostics/${key.replace(/\/([a-z]+)$/, '/water_stats_$1.json')}`);
+            if (res.ok) window.diagData[key] = await res.json();
+        } catch (e) { }
+    }
+    const sets = window.diagData[key];
+    if (!sets) { out.innerHTML = '<p style="color:var(--text-secondary)">(此選擇無統計資料;可改用下方手動載入)</p>'; return; }
+    let html = '';
+    sets.forEach(st => {
+        html += `<h3 style="margin:10px 0 4px;">$${st.bet}${st.scope ? ' · ' + st.scope : ''}${st.players ? ' · n=' + st.players : ''}</h3>`;
+        html += `<p style="font-size:.85rem;color:var(--text-secondary)">base ${(+st.prefund_mult).toFixed(1)} ｜ in ${(+st.contrib_mult).toFixed(1)} ｜ out ${(+st.paid_mult).toFixed(1)} ｜ end ${(+st.final_mult).toFixed(1)}</p>`;
+        html += '<table style="width:100%"><thead><tr><th>ID</th><th style="text-align:left">名稱</th><th>次數</th><th>已付</th><th>剩餘</th></tr></thead><tbody>';
+        (st.pools || []).forEach(pp => {
+            html += `<tr><td>${pp.pool_id}</td><td style="text-align:left">${pp.pool_name}</td><td>${pp.triggers}</td><td>${(+pp.paid_mult).toFixed(1)}</td><td>${(+pp.water_mult).toFixed(2)}</td></tr>`;
+        });
+        html += '</tbody></table>';
+    });
+    out.innerHTML = html;
+};
+document.addEventListener('DOMContentLoaded', () => {
+    const up = document.getElementById('diag-upload');
+    if (!up) return;
+    up.addEventListener('change', async (e) => {
+        for (const f of e.target.files) {
+            const m = (f.webkitRelativePath || '').split('\\').join('/').match(/run_(\d+)\/(\w+)_(\w+)\/water_stats_(\w+)\.json$/);
+            if (!m) continue;
+            try { window.diagData[`run_${m[1]}/${m[2]}_${m[3]}/${m[4]}`] = JSON.parse(await f.text()); } catch (err) { }
+        }
+        document.getElementById('diag-out').innerHTML = `<p>已載入 ${Object.keys(window.diagData).length} 份;切換上方任一選項即會顯示。</p>`;
+    });
+});
+
 let currentRoundLimit = 200; // 顯示前 N 局(預設 200;使用者選擇記錄於 localStorage)
 let currentWinDef = 'hit';   // 'hit' = win>0;'winrate' = win>=bet
 let FETCH_BASE = 'reports/'; // 自動載入時偵測 (repo 根目錄或 web/ 子目錄兩種佈局)
@@ -168,6 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         fileNameDisplay.textContent = `正在讀取報表: ${key} ...`;
 
+        if (window.renderDiag) window.renderDiag(currentRun, currentDist, currentConfig, currentSystem);
         if (allReports[key]) {
             renderData(allReports[key]);
             fileNameDisplay.textContent = `目前顯示: ${key}`;
