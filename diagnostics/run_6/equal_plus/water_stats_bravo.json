@@ -1,0 +1,115 @@
+[
+ {
+  "bet": 1,
+  "rescue": "觸發成功 369 次/支出 1432.0 倍/失敗 17 次",
+  "spins": 0,
+  "prefund_mult": 205.1,
+  "contrib_mult": 98000,
+  "paid_mult": 97989,
+  "final_mult": 216.1,
+  "net_retained_mult": 11,
+  "pools": [
+   {
+    "pool_id": 1,
+    "pool_name": "BIGP(砍2/補4/補失敗13)",
+    "triggers": 7,
+    "paid_mult": 711,
+    "water_mult": 136.1
+   },
+   {
+    "pool_id": 6,
+    "pool_name": "MG-S(砍444/補353/補失敗0)",
+    "triggers": 43364,
+    "paid_mult": 75983,
+    "water_mult": 51
+   },
+   {
+    "pool_id": 13,
+    "pool_name": "RS-S(砍141/補357/補失敗0)",
+    "triggers": 2214,
+    "paid_mult": 21295,
+    "water_mult": 29
+   }
+  ]
+ },
+ {
+  "bet": 5,
+  "rescue": "觸發成功 1528 次/支出 5521.0 倍/失敗 172 次",
+  "spins": 0,
+  "prefund_mult": 647.05,
+  "contrib_mult": 97000,
+  "paid_mult": 97046.6,
+  "final_mult": 600.45,
+  "net_retained_mult": -46.59999999999991,
+  "pools": [
+   {
+    "pool_id": 1,
+    "pool_name": "BIGP",
+    "triggers": 23,
+    "paid_mult": 2392.8,
+    "water_mult": 475.05
+   },
+   {
+    "pool_id": 6,
+    "pool_name": "MG-S(砍993/補62/補失敗0)",
+    "triggers": 26828,
+    "paid_mult": 43871.4,
+    "water_mult": 14.4
+   },
+   {
+    "pool_id": 13,
+    "pool_name": "RS-S(砍221/補384/補失敗0)",
+    "triggers": 2146,
+    "paid_mult": 24102.6,
+    "water_mult": 56
+   },
+   {
+    "pool_id": 16,
+    "pool_name": "LW-S(砍172/補294/補失敗0)",
+    "triggers": 1609,
+    "paid_mult": 26679.8,
+    "water_mult": 55
+   }
+  ]
+ },
+ {
+  "bet": 10,
+  "rescue": "觸發成功 1632 次/支出 6016.7 倍/失敗 194 次",
+  "spins": 0,
+  "prefund_mult": 1069.55,
+  "contrib_mult": 97000,
+  "paid_mult": 97032.7,
+  "final_mult": 1036.85,
+  "net_retained_mult": -32.700000000000045,
+  "pools": [
+   {
+    "pool_id": 1,
+    "pool_name": "BIGP",
+    "triggers": 38,
+    "paid_mult": 4000.3,
+    "water_mult": 914.45
+   },
+   {
+    "pool_id": 6,
+    "pool_name": "MG-S(砍988/補0/補失敗0)",
+    "triggers": 27225,
+    "paid_mult": 43636.3,
+    "water_mult": 21.9
+   },
+   {
+    "pool_id": 13,
+    "pool_name": "RS-S(砍164/補403/補失敗0)",
+    "triggers": 2235,
+    "paid_mult": 22702.5,
+    "water_mult": 58.1
+   },
+   {
+    "pool_id": 16,
+    "pool_name": "LW-S(砍167/補289/補失敗0)",
+    "triggers": 1645,
+    "paid_mult": 26693.6,
+    "water_mult": 42.4
+   }
+  ]
+ }
+]

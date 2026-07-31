@@ -716,3 +716,17 @@ a:focus {
     color: #93c5fd;
     border-bottom-color: #93c5fd;
 }
+
+/* 參數組沒有資料時壓灰(進1/進2 目前只有 BRAVO / TANGO 產出) */
+.tab-btn.unavailable,
+#fp-config button.unavailable {
+    opacity: 0.32;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.tab-btn.unavailable:hover,
+#fp-config button.unavailable:hover {
+    border-color: rgba(255,255,255,0.1);
+    color: var(--text-secondary);
+}

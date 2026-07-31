@@ -1,0 +1,43 @@
+[
+ {
+  "bet": 5,
+  "scope": "shared",
+  "rescue": "觸發成功 539 次/支出 1995.8 單位/失敗 31 次",
+  "spins": 0,
+  "prefund_mult": 556.45,
+  "contrib_mult": 109640,
+  "paid_mult": 109900.7,
+  "final_mult": 295.75,
+  "net_retained_mult": -260.70000000000005,
+  "pools": [
+   {
+    "pool_id": 1,
+    "pool_name": "BIGP",
+    "triggers": 12,
+    "paid_mult": 1220.7,
+    "water_mult": 240.75
+   },
+   {
+    "pool_id": 6,
+    "pool_name": "MG-S(砍578/補178/補失敗0)",
+    "triggers": 46479,
+    "paid_mult": 81273,
+    "water_mult": 8.2
+   },
+   {
+    "pool_id": 13,
+    "pool_name": "RS-S(砍143/補401/補失敗0)",
+    "triggers": 2500,
+    "paid_mult": 24163.3,
+    "water_mult": 18.3
+   },
+   {
+    "pool_id": 16,
+    "pool_name": "LW-S(砍9/補40/補失敗0)",
+    "triggers": 200,
+    "paid_mult": 3243.7,
+    "water_mult": 28.5
+   }
+  ]
+ }
+]

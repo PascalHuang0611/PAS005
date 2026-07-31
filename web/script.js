@@ -150,11 +150,42 @@ document.addEventListener("DOMContentLoaded", () => {
     // BET 過濾器:啟用中的注額(可單看可聯看;至少保留一個)
     const activeBets = new Set([1, 5, 10]);
 
-    // 已知參數組
-    const knownConfigs = ['base', 'base2', 'special', 'special2'];
-    const CONFIG_LABELS = { base: '基1', base2: '基2', special: '特1', special2: '特2' };
-    // 各系統目前已產出的參數組(隨機起點只抽有資料的組合)
-    const SYS_CONFIGS = { ALPHA: knownConfigs, OSCAR: knownConfigs, DELTA: knownConfigs, BRAVO: knownConfigs, TANGO: knownConfigs };
+    // 已知參數組。進1/進2(玩家狀態追蹤層)只在詳細版出現,盲測版完全不顯示。
+    const baseConfigs = ['base', 'base2', 'special', 'special2'];
+    const plusConfigs = ['plus', 'plus2'];
+    const knownConfigs = window.DETAIL_MODE ? [...baseConfigs, ...plusConfigs] : baseConfigs;
+    const CONFIG_LABELS = { base: '基1', base2: '基2', special: '特1', special2: '特2', plus: '進1', plus2: '進2' };
+    // 各系統目前已產出的參數組(隨機起點只抽有資料的組合;沒有資料的組別在詳細版壓灰)
+    const SYS_CONFIGS = {
+        ALPHA: baseConfigs, OSCAR: baseConfigs, DELTA: baseConfigs,
+        BRAVO: knownConfigs, TANGO: knownConfigs,
+    };
+    // 目前系統有沒有這個參數組的資料
+    function configAvailable(config, system) {
+        return (SYS_CONFIGS[system] || baseConfigs).includes(config);
+    }
+    // 依目前系統更新參數組按鈕的可用狀態(無資料 → 壓灰且不可點);
+    // 若目前選中的組別在新系統沒有資料,退回特1
+    function updateConfigAvailability() {
+        let fallback = false;
+        document.querySelectorAll('.tab-btn[data-config]').forEach(b => {
+            const ok = configAvailable(b.dataset.config, currentSystem);
+            b.disabled = !ok;
+            b.classList.toggle('unavailable', !ok);
+            b.title = ok ? '' : `${CONFIG_LABELS[b.dataset.config] || b.dataset.config}:此方案未產出這組資料`;
+            if (!ok && b.dataset.config === currentConfig) fallback = true;
+        });
+        document.querySelectorAll('#fp-config button[data-config]').forEach(b => {
+            const ok = configAvailable(b.dataset.config, currentSystem);
+            b.disabled = !ok;
+            b.classList.toggle('unavailable', !ok);
+        });
+        if (fallback) {
+            currentConfig = 'special';
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.config === currentConfig));
+        }
+        return fallback;
+    }
 
     // 盲測版:每次進入隨機起點,避免錨定效應(目前單系統單參數,保留機制)
     if (window.BLIND_MODE) {
@@ -221,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tabsMain.appendChild(btn);
         });
 
+        updateConfigAvailability(); // 依目前系統壓灰沒有資料的參數組
         syncFloatingPanel(); // 頁籤建好後同步面板高亮(含隨機起點抽到的參數組)
         loadCurrentSelection();
     }
@@ -295,6 +327,8 @@ document.addEventListener("DOMContentLoaded", () => {
             sysBtns.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
             currentSystem = e.target.dataset.system;
+            updateConfigAvailability();
+            syncFloatingPanel();
             loadCurrentSelection();
         });
     });
