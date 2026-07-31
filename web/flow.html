@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流程圖 — Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .guide { max-width: 900px; margin: 0 auto; }
+        .guide h2 { margin: 2.4rem 0 .3rem; font-size: 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: .3rem; }
+        .guide .tagline { color: var(--text-secondary); line-height: 1.75; margin: .4rem 0 1rem; }
+        .guide p, .guide li { line-height: 1.8; color: var(--text-secondary); }
+        .guide .note { border-left: 3px solid var(--accent); padding: .5rem .9rem; margin: .8rem 0 1.4rem;
+                       background: rgba(255,255,255,.03); border-radius: 4px; }
+
+        .flow { display: flex; flex-direction: column; align-items: stretch; }
+        .node { border: 1px solid rgba(255,255,255,.14); border-radius: .55rem;
+                padding: .6rem .85rem; background: rgba(255,255,255,.035); position: relative; }
+        .nt { color: var(--text-primary); font-weight: 600; font-size: .95rem; line-height: 1.55; }
+        .nd { color: var(--text-secondary); font-size: .86rem; line-height: 1.7; margin-top: .3rem; }
+        .badge { position: absolute; top: -.62rem; right: .7rem; font-size: .68rem; letter-spacing: .02em;
+                 background: #7c3aed; color: #fff; padding: .1rem .45rem; border-radius: .5rem; }
+
+        .n-dec { border-color: rgba(96,165,250,.55); background: rgba(96,165,250,.09); }
+        .n-pay { border-color: rgba(52,211,153,.5); background: rgba(52,211,153,.09); }
+        .n-no  { border-color: rgba(248,113,113,.45); background: rgba(248,113,113,.08); }
+        .n-plus { border-color: rgba(167,139,250,.6); background: rgba(167,139,250,.1); margin-top: .3rem; }
+
+        .arrow { width: 1px; height: 1.1rem; background: rgba(255,255,255,.22); margin: 0 auto;
+                 position: relative; }
+        .arrow::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+                        border-left: 4px solid transparent; border-right: 4px solid transparent;
+                        border-top: 6px solid rgba(255,255,255,.35); }
+
+        .branches { display: flex; gap: .8rem; margin-top: .5rem; flex-wrap: wrap; }
+        .branch { flex: 1 1 260px; border-left: 2px solid rgba(255,255,255,.14); padding-left: .7rem; }
+        .blabel { font-size: .76rem; color: var(--text-secondary); margin-bottom: .3rem; }
+        .branch .branches { margin-left: 0; }
+
+        @media (max-width: 640px) { .branches { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="container guide">
+        <header>
+            <h1>流程圖</h1>
+            <p>解盲版:五套方案「玩家按下一次按鈕」時,系統依序做了什麼。</p>
+        </header>
+
+        <div class="chart-container">
+            <a href="detail.html">← 詳細版儀表板</a>　|　<a href="params.html">參數總表</a>　|　<a href="guide-detail.html">解盲版指南</a>　|　<a href="notes.html">觀察筆記</a>
+
+            <p class="note"><strong>怎麼讀</strong><br>
+            由上往下就是系統的執行順序。<span style="color:#60a5fa">藍框</span>是判斷、
+            <span style="color:#34d399">綠框</span>是發獎、<span style="color:#f87171">紅框</span>是沒中獎、
+            <span style="color:#a78bfa">紫框</span>是只有進1 / 進2 才執行的步驟。<br>
+            兩個關鍵差異可以從流程圖直接看出來:<strong>ALPHA / BRAVO / TANGO 會抽機率表</strong>
+            (盤面是真的抽出來的),而 <strong>OSCAR / DELTA 不抽</strong>(先由水位決定金額,再回頭找一個吻合的盤面來顯示);
+            以及<strong>只有 DELTA 有「個人桶」</strong>,其餘方案的桶都是共用的。</p>
+
+            <h2>ALPHA</h2>
+<p class="tagline">純隨機——等同目前線上的做法,作為對照組。沒有桶、沒有任何前後處理。</p>
+<div class="flow">
+<div class="node n-step"><div class="nt">抽機率表</div><div class="nd">依權重抽出一個盤面組合。第 4 輪若是 Respin 或輪盤,再抽該玩法的表並把分數相加。</div></div>
+<div class="arrow"></div>
+<div class="node n-pay"><div class="nt">照抽出的結果發獎</div><div class="nd">抽到什麼就是什麼,系統不做任何檢查或改動。</div></div>
+</div>
+<h2>BRAVO</h2>
+<p class="tagline">先抽機率表,再用桶的水位決定這個獎付不付得出來。每個注額各一組桶。</p>
+<div class="flow">
+<div class="node n-step"><div class="nt">① 全桶加水</div><div class="nd">每一轉,依各桶的貢獻率往所有桶加水。加總 = 該注額的理論回報率。</div></div>
+<div class="arrow"></div>
+<div class="node n-step"><div class="nt">② 抽機率表</div><div class="nd">與 ALPHA 完全相同的抽法,得到「原始結果」。</div></div>
+<div class="arrow"></div>
+<div class="node n-dec"><div class="nt">③ 原始結果有中獎嗎?</div></div>
+<div class="branches"><div class="branch"><div class="blabel">有中獎</div><div class="node n-dec"><div class="nt">找出負責這個獎的桶,水夠付嗎?</div><div class="nd">依獎金倍率與玩法類別對應到一個桶(100 倍以上的獎不分玩法,一律歸「跨類別大獎」桶)。</div></div><div class="arrow"></div><div class="branches"><div class="branch"><div class="blabel">夠付</div><div class="node n-pay"><div class="nt">照原始結果發獎</div><div class="nd">從那個桶扣掉發出去的金額。玩家看到的盤面就是抽出來的那一個。</div></div></div><div class="branch"><div class="blabel">不夠付</div><div class="node n-step"><div class="nt">改判為沒中獎</div><div class="nd">盤面改成一個 0 分的組合;水留在桶裡,之後由其他人領走。此局仍繼續往下走 ④。</div></div></div></div></div><div class="branch"><div class="blabel">沒中獎</div><div class="node n-step"><div class="nt">往下走 ④</div></div></div></div>
+<div class="arrow"></div>
+<div class="node n-plus"><span class="badge">進1 / 進2 專屬</span><div class="nt">④ 玩家狀態檢查(僅進1 / 進2)</div><div class="nd">本轉將以沒中獎收場時,檢查這位玩家的連輸長度與最近 200 局回報率。達到條件就重複抽機率表,直到抽出一個「負責它的桶付得起」的主遊戲獎,發給他並從那個桶扣款。</div></div>
+<div class="arrow"></div>
+<div class="node n-dec"><div class="nt">⑤ 有沒有哪個桶的水滿到它的出獎上限?</div><div class="nd">由編號小的桶優先;單轉最多發一個獎。</div></div>
+<div class="branches"><div class="branch"><div class="blabel">有</div><div class="node n-pay"><div class="nt">強制發獎</div><div class="nd">重複抽機率表,直到抽出落在那個桶範圍內的獎(上限 1000 次),然後發出去。因為獎是真的抽出來的,倍率分布自動等於該範圍的自然分布。</div></div></div><div class="branch"><div class="blabel">沒有</div><div class="node n-no"><div class="nt">本轉沒中獎</div><div class="nd">顯示一個 0 分盤面。</div></div></div></div>
+</div>
+<h2>TANGO</h2>
+<p class="tagline">流程與 BRAVO 相同,差別在三個注額共用同一組桶,而且桶裡記的是「單位」而非金額。</p>
+<div class="flow">
+<div class="node n-step"><div class="nt">① 全桶加水(記單位)</div><div class="nd">$1 / $5 / $10 的玩家共用同一組桶。每位玩家依「自己注額的貢獻率表」加水,單位 = 倍率。</div></div>
+<div class="arrow"></div>
+<div class="node n-step"><div class="nt">② 抽機率表</div><div class="nd">抽這位玩家自己注額的機率表。</div></div>
+<div class="arrow"></div>
+<div class="node n-dec"><div class="nt">③ 原始結果有中獎嗎?</div></div>
+<div class="branches"><div class="branch"><div class="blabel">有中獎</div><div class="node n-dec"><div class="nt">找出負責這個獎的桶,單位夠付嗎?</div><div class="nd">桶的出獎範圍是三個注額的聯集——範圍若只按單一注額訂,其他注額會出現「沒有桶負責」的金額。</div></div><div class="arrow"></div><div class="branches"><div class="branch"><div class="blabel">夠付</div><div class="node n-pay"><div class="nt">照原始結果發獎</div><div class="nd">從桶扣掉「倍率」的單位數,玩家實得 = 倍率 × 自己的注額。因此同樣扣 1 單位,$10 玩家拿到的錢是 $1 玩家的十倍——這就是跨注額補貼的來源。</div></div></div><div class="branch"><div class="blabel">不夠付</div><div class="node n-step"><div class="nt">改判為沒中獎</div><div class="nd">單位留在桶裡,之後由任一注額的玩家領走。</div></div></div></div></div><div class="branch"><div class="blabel">沒中獎</div><div class="node n-step"><div class="nt">往下走 ④</div></div></div></div>
+<div class="arrow"></div>
+<div class="node n-plus"><span class="badge">進1 / 進2 專屬</span><div class="nt">④ 玩家狀態檢查(僅進1 / 進2)</div><div class="nd">與 BRAVO 相同。因為桶是三注額共用的,這一層的支出會同時影響三個注額的可用單位。</div></div>
+<div class="arrow"></div>
+<div class="node n-dec"><div class="nt">⑤ 有沒有哪個桶的單位滿到它的出獎上限?</div><div class="nd">該注額貢獻為 0 的桶會跳過(例如 $1 沒有輪盤,輪盤桶只由 $5 / $10 加水與領走)。</div></div>
+<div class="branches"><div class="branch"><div class="blabel">有</div><div class="node n-pay"><div class="nt">強制發獎</div><div class="nd">重複抽這位玩家的機率表,直到抽出落在那個桶範圍內的獎。</div></div></div><div class="branch"><div class="blabel">沒有</div><div class="node n-no"><div class="nt">本轉沒中獎</div></div></div></div>
+</div>
+<h2>OSCAR</h2>
+<p class="tagline">不抽機率表。每個注額一組全服共用的桶,誰把水推過門檻誰得獎。</p>
+<div class="flow">
+<div class="node n-step"><div class="nt">① 全桶加水</div><div class="nd">同注額的所有玩家往同一組桶加水。</div></div>
+<div class="arrow"></div>
+<div class="node n-dec"><div class="nt">② 有沒有哪個桶的水達到它的門檻?</div><div class="nd">門檻是每次發獎後重新抽的隨機值(範圍 = 該次要發的獎金額 ~ 門檻上限)。由編號小的桶優先,單轉最多發一個獎。</div></div>
+<div class="branches"><div class="branch"><div class="blabel">有</div><div class="node n-step"><div class="nt">決定實際獎項</div><div class="nd">把該桶「這次要發的金額」對照真實賠付表,取不超過它的最接近獎項。</div></div></div><div class="branch"><div class="blabel">沒有</div><div class="node n-no"><div class="nt">本轉沒中獎</div><div class="nd">顯示一個 0 分盤面。</div></div></div></div>
+<div class="arrow"></div>
+<div class="node n-pay"><div class="nt">③ 發獎、扣水、重抽</div><div class="nd">發出實際獎項並從桶扣掉同額;接著為該桶重新抽「下次要發的金額」與「下次的門檻」。盤面是從「賠率→盤面」字典裡挑一個吻合該獎金額的組合,不是抽出來的。</div></div>
+</div>
+<h2>DELTA</h2>
+<p class="tagline">不抽機率表。每位玩家有自己的個人桶(小獎),另有同注額全服共用的全域桶(大獎)。</p>
+<div class="flow">
+<div class="node n-step"><div class="nt">① 兩組桶各自加水</div><div class="nd">82% 的貢獻進這位玩家的個人桶、18% 進全域桶。個人桶只吃自己的注、只發給自己。</div></div>
+<div class="arrow"></div>
+<div class="node n-dec"><div class="nt">② 全域桶有達到門檻的嗎?</div><div class="nd">全域桶優先於個人桶;達標多個時由編號小的優先,單獨發一個、不疊加。</div></div>
+<div class="branches"><div class="branch"><div class="blabel">有</div><div class="node n-pay"><div class="nt">從全域桶發獎</div><div class="nd">這是大獎的來源。發完扣水並重抽。</div></div></div><div class="branch"><div class="blabel">沒有</div><div class="node n-step"><div class="nt">往下看個人桶 ③</div></div></div></div>
+<div class="arrow"></div>
+<div class="node n-dec"><div class="nt">③ 個人的特色桶(Respin / 輪盤)有達到門檻的嗎?</div><div class="nd">由編號小的優先,單獨發一個。</div></div>
+<div class="branches"><div class="branch"><div class="blabel">有</div><div class="node n-pay"><div class="nt">從個人特色桶發獎</div><div class="nd">發完扣水並重抽。</div></div></div><div class="branch"><div class="blabel">沒有</div><div class="node n-step"><div class="nt">往下看主桶 ④</div></div></div></div>
+<div class="arrow"></div>
+<div class="node n-dec"><div class="nt">④ 個人的主遊戲桶有達到門檻的嗎?</div><div class="nd">主桶可以<strong>疊加</strong>:把所有達標桶「這次要發的金額」加總,對照賠付表取不超過總和的最接近獎項,再依編號由大到小逐桶扣款。</div></div>
+<div class="branches"><div class="branch"><div class="blabel">有</div><div class="node n-pay"><div class="nt">從個人主桶發獎(可疊加)</div><div class="nd">有扣到款的桶重抽;一毛都沒扣到的桶保留達標狀態,下一轉再排隊。</div></div></div><div class="branch"><div class="blabel">沒有</div><div class="node n-no"><div class="nt">本轉沒中獎</div><div class="nd">顯示一個 0 分盤面。</div></div></div></div>
+</div>
+        </div>
+    </div>
+    <script src="version.js"></script>
+</body>
+</html>
