@@ -1,5 +1,5 @@
 // 全站共用版本號,升版只改這裡
-const APP_VERSION = '1.23';
+const APP_VERSION = '1.24';
 
 document.addEventListener('DOMContentLoaded', () => {
     const versionTag = document.createElement('div');

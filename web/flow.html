@@ -26,6 +26,8 @@
         .n-pay { border-color: rgba(52,211,153,.5); background: rgba(52,211,153,.09); }
         .n-no  { border-color: rgba(248,113,113,.45); background: rgba(248,113,113,.08); }
         .n-plus { border-color: rgba(167,139,250,.6); background: rgba(167,139,250,.1); margin-top: .3rem; }
+        .n-plusdec { border-color: rgba(167,139,250,.75); background: rgba(167,139,250,.13); margin-top: .3rem;
+                     box-shadow: inset 0 0 0 1px rgba(96,165,250,.25); }
 
         .arrow { width: 1px; height: 1.1rem; background: rgba(255,255,255,.22); margin: 0 auto;
                  position: relative; }
@@ -57,7 +59,8 @@
             <span style="color:#a78bfa">紫框</span>是只有進1 / 進2 才執行的步驟。<br>
             兩個關鍵差異可以從流程圖直接看出來:<strong>ALPHA / BRAVO / TANGO 會抽機率表</strong>
             (盤面是真的抽出來的),而 <strong>OSCAR / DELTA 不抽</strong>(先由水位決定金額,再回頭找一個吻合的盤面來顯示);
-            以及<strong>只有 DELTA 有「個人桶」</strong>,其餘方案的桶都是共用的。</p>
+            以及<strong>只有 DELTA 有「個人桶」</strong>,其餘方案的桶都是共用的。<br>
+            <strong>所有方案都遵守「一轉最多發一個獎」</strong>:流程中只要有任一處發了獎,本轉就結束,不會再往下檢查。</p>
 
             <h2>ALPHA</h2>
 <p class="tagline">純隨機——等同目前線上的做法,作為對照組。沒有桶、沒有任何前後處理。</p>
@@ -76,7 +79,8 @@
 <div class="node n-dec"><div class="nt">③ 原始結果有中獎嗎?</div></div>
 <div class="branches"><div class="branch"><div class="blabel">有中獎</div><div class="node n-dec"><div class="nt">找出負責這個獎的桶,水夠付嗎?</div><div class="nd">依獎金倍率與玩法類別對應到一個桶(100 倍以上的獎不分玩法,一律歸「跨類別大獎」桶)。</div></div><div class="arrow"></div><div class="branches"><div class="branch"><div class="blabel">夠付</div><div class="node n-pay"><div class="nt">照原始結果發獎</div><div class="nd">從那個桶扣掉發出去的金額。玩家看到的盤面就是抽出來的那一個。</div></div></div><div class="branch"><div class="blabel">不夠付</div><div class="node n-step"><div class="nt">改判為沒中獎</div><div class="nd">盤面改成一個 0 分的組合;水留在桶裡,之後由其他人領走。此局仍繼續往下走 ④。</div></div></div></div></div><div class="branch"><div class="blabel">沒中獎</div><div class="node n-step"><div class="nt">往下走 ④</div></div></div></div>
 <div class="arrow"></div>
-<div class="node n-plus"><span class="badge">進1 / 進2 專屬</span><div class="nt">④ 玩家狀態檢查(僅進1 / 進2)</div><div class="nd">本轉將以沒中獎收場時,檢查這位玩家的連輸長度與最近 200 局回報率。達到條件就重複抽機率表,直到抽出一個「負責它的桶付得起」的主遊戲獎,發給他並從那個桶扣款。</div></div>
+<div class="node n-plusdec"><span class="badge">進1 / 進2 專屬</span><div class="nt">④ 玩家狀態檢查</div><div class="nd">本轉將以沒中獎收場時,檢查這位玩家的連輸長度與最近 200 局回報率(規則見解盲版指南第三節)。</div></div>
+<div class="branches"><div class="branch"><div class="blabel">達到條件,且重抽到一個「負責它的桶付得起」的主遊戲獎</div><div class="node n-pay"><div class="nt">發給這位玩家,本轉結束</div><div class="nd">從那個桶扣款。<strong>本轉在此結束,不再進行 ⑤ 的檢查</strong>——單轉最多發一個獎。</div></div></div><div class="branch"><div class="blabel">沒達到條件,或重抽 1000 次都沒有桶付得起</div><div class="node n-step"><div class="nt">往下走 ⑤</div><div class="nd">重抽失敗會記錄一次失敗並讓這位玩家進入冷卻,避免桶枯竭時每轉白抽。</div></div></div></div>
 <div class="arrow"></div>
 <div class="node n-dec"><div class="nt">⑤ 有沒有哪個桶的水滿到它的出獎上限?</div><div class="nd">由編號小的桶優先;單轉最多發一個獎。</div></div>
 <div class="branches"><div class="branch"><div class="blabel">有</div><div class="node n-pay"><div class="nt">強制發獎</div><div class="nd">重複抽機率表,直到抽出落在那個桶範圍內的獎(上限 1000 次),然後發出去。因為獎是真的抽出來的,倍率分布自動等於該範圍的自然分布。</div></div></div><div class="branch"><div class="blabel">沒有</div><div class="node n-no"><div class="nt">本轉沒中獎</div><div class="nd">顯示一個 0 分盤面。</div></div></div></div>
@@ -91,7 +95,8 @@
 <div class="node n-dec"><div class="nt">③ 原始結果有中獎嗎?</div></div>
 <div class="branches"><div class="branch"><div class="blabel">有中獎</div><div class="node n-dec"><div class="nt">找出負責這個獎的桶,單位夠付嗎?</div><div class="nd">桶的出獎範圍是三個注額的聯集——範圍若只按單一注額訂,其他注額會出現「沒有桶負責」的金額。</div></div><div class="arrow"></div><div class="branches"><div class="branch"><div class="blabel">夠付</div><div class="node n-pay"><div class="nt">照原始結果發獎</div><div class="nd">從桶扣掉「倍率」的單位數,玩家實得 = 倍率 × 自己的注額。因此同樣扣 1 單位,$10 玩家拿到的錢是 $1 玩家的十倍——這就是跨注額補貼的來源。</div></div></div><div class="branch"><div class="blabel">不夠付</div><div class="node n-step"><div class="nt">改判為沒中獎</div><div class="nd">單位留在桶裡,之後由任一注額的玩家領走。</div></div></div></div></div><div class="branch"><div class="blabel">沒中獎</div><div class="node n-step"><div class="nt">往下走 ④</div></div></div></div>
 <div class="arrow"></div>
-<div class="node n-plus"><span class="badge">進1 / 進2 專屬</span><div class="nt">④ 玩家狀態檢查(僅進1 / 進2)</div><div class="nd">與 BRAVO 相同。因為桶是三注額共用的,這一層的支出會同時影響三個注額的可用單位。</div></div>
+<div class="node n-plusdec"><span class="badge">進1 / 進2 專屬</span><div class="nt">④ 玩家狀態檢查</div><div class="nd">條件與 BRAVO 相同。因為桶是三注額共用的,這一層的支出會同時影響三個注額的可用單位。</div></div>
+<div class="branches"><div class="branch"><div class="blabel">達到條件,且重抽到一個「負責它的桶付得起」的主遊戲獎</div><div class="node n-pay"><div class="nt">發給這位玩家,本轉結束</div><div class="nd"><strong>本轉在此結束,不再進行 ⑤ 的檢查</strong>。</div></div></div><div class="branch"><div class="blabel">沒達到條件,或重抽 1000 次都沒有桶付得起</div><div class="node n-step"><div class="nt">往下走 ⑤</div></div></div></div>
 <div class="arrow"></div>
 <div class="node n-dec"><div class="nt">⑤ 有沒有哪個桶的單位滿到它的出獎上限?</div><div class="nd">該注額貢獻為 0 的桶會跳過(例如 $1 沒有輪盤,輪盤桶只由 $5 / $10 加水與領走)。</div></div>
 <div class="branches"><div class="branch"><div class="blabel">有</div><div class="node n-pay"><div class="nt">強制發獎</div><div class="nd">重複抽這位玩家的機率表,直到抽出落在那個桶範圍內的獎。</div></div></div><div class="branch"><div class="blabel">沒有</div><div class="node n-no"><div class="nt">本轉沒中獎</div></div></div></div>
